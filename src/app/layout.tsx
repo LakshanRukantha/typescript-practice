@@ -1,13 +1,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import NavBar from "./components/NavBar";
-
-const inter = Inter({ subsets: ["latin"] });
+import AuthProvider from "./utils/AuthProvider";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "LR Blog | Lakshan Rukantha",
   description: "A blog about programming and web development.",
+  icons: {
+    icon: "./favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -17,9 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <NavBar />
-        <div className="max-w-5xl m-auto px-3 lg:px-0">{children}</div>
+        <div className="max-w-5xl m-auto px-3 lg:px-0 min-h-screen pt-24">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
+        <Footer />
       </body>
     </html>
   );
