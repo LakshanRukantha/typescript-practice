@@ -19,13 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <NavBar />
-        <div className="max-w-5xl m-auto px-3 lg:px-0 min-h-screen pt-24">
-          <AuthProvider>{children}</AuthProvider>
-        </div>
-        <Footer />
-      </body>
+      <AuthProvider>
+        <body>
+          <NavBar />
+          <div className="max-w-5xl m-auto px-3 lg:px-0 min-h-screen pt-24">
+            {children}
+          </div>
+          <Footer />
+        </body>
+      </AuthProvider>
     </html>
   );
 }

@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
-import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const session = useSession();
 
   const handleAuth = () => {
-    setIsAuthenticated(!isAuthenticated);
-  }
+    signIn("google", { callbackUrl: "http://localhost:3000/new" });
+  };
 
   return (
     <nav className="bg-violet-100 shadow-md py-3 px-3 mb-5 fixed w-full z-10">
@@ -17,14 +17,17 @@ const Navbar = () => {
           <span className="bg-violet-500 rounded px-2 text-white">LR</span> Blog
         </Link>
         <div>
-          {isAuthenticated ? (
-            <Link href={"/new"}>
-              <Button title={"New Post"} />
-            </Link>
+          {session.status === "authenticated" ? (
+            <>
+              <Link
+                className="text-violet-800 hover:text-violet-500"
+                href={"/new"}
+              >
+                <Button hasAction={false} title={"New Post"} />
+              </Link>
+            </>
           ) : (
-            <Link href={"/signin"}>
-              <Button hasAction={true} handleAuth={handleAuth} title={"SignIn"} />
-            </Link>
+            <Button hasAction={true} handleAuth={handleAuth} title={"SignIn"} />
           )}
         </div>
       </div>
