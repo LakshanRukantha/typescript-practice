@@ -27,7 +27,13 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <Button hasAction={true} handleAuth={handleAuth} title={"SignIn"} />
+            // <Button hasAction={true} handleAuth={handleAuth} title={"Sign In"} />
+            <Link
+              className="text-violet-800 hover:text-violet-500"
+              href={"/signin"}
+            >
+              <Button title={"Sign In"} />
+            </Link>
           )}
         </div>
       </div>
