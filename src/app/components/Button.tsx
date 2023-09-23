@@ -17,7 +17,7 @@ const Button = ({ title, hasAction, handleAuth }: ButtonProps) => {
               }
             : () => {}
         }
-        className="py-2 font-semibold px-4 btn bg-violet-500 rounded text-white active:scale-95 hover:bg-violet-400 hover:shadow-sm"
+        className="py-2 font-semibold px-4 btn bg-violet-500 rounded text-white active:scale-95 lg:hover:bg-violet-400 hover:shadow-sm"
         type="button"
       >
         {title}
@@ -26,7 +26,7 @@ const Button = ({ title, hasAction, handleAuth }: ButtonProps) => {
   } else {
     return (
       <button
-        className="py-2 px-4 font-semibold btn bg-violet-500 rounded text-white active:scale-95 hover:bg-violet-400 hover:shadow-sm"
+        className="py-2 px-4 font-semibold btn bg-violet-500 rounded text-white active:scale-95 lg:hover:bg-violet-400 hover:shadow-sm"
         type="button"
       >
         {title}

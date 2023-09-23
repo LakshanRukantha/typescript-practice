@@ -22,7 +22,7 @@ export default function RootLayout({
       <AuthProvider>
         <body>
           <NavBar />
-          <div className="max-w-5xl m-auto px-3 lg:px-0 min-h-screen pt-24">
+          <div className="flex flex-col max-w-5xl m-auto px-3 lg:px-0 min-h-screen pt-16">
             {children}
           </div>
           <Footer />

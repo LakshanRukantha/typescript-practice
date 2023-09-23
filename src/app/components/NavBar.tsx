@@ -1,14 +1,10 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const session = useSession();
-
-  const handleAuth = () => {
-    signIn("google", { callbackUrl: "http://localhost:3000/new" });
-  };
 
   return (
     <nav className="bg-violet-100 shadow-md py-3 px-3 mb-5 fixed w-full z-10">
@@ -27,7 +23,6 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            // <Button hasAction={true} handleAuth={handleAuth} title={"Sign In"} />
             <Link
               className="text-violet-800 hover:text-violet-500"
               href={"/signin"}
