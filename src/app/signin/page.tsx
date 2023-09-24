@@ -64,7 +64,7 @@ const SignIn = () => {
       <div className="flex flex-col max-w-sm mx-auto gap-4 my-4">
         <Button
           hasAction={true}
-          handleAuth={handleAuth}
+          taskFunc={handleAuth}
           title="Sign In with Google"
         />
         <Button title="Sign In with Github" />

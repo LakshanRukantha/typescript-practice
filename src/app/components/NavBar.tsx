@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const Navbar = () => {
   const session = useSession();
@@ -14,14 +15,23 @@ const Navbar = () => {
         </Link>
         <div>
           {session.status === "authenticated" ? (
-            <>
+            <div className="flex gap-2 lg:gap-4">
               <Link
                 className="text-violet-800 hover:text-violet-500"
                 href={"/new"}
               >
                 <Button hasAction={false} title={"New Post"} />
               </Link>
-            </>
+              <Link href={"/dashboard"}>
+                <Image
+                  src={session.data?.user?.image as string}
+                  className="border rounded-full hover:shadow"
+                  width={40}
+                  height={40}
+                  alt={`profile ${session.data?.user?.name}`}
+                />
+              </Link>
+            </div>
           ) : (
             <Link
               className="text-violet-800 hover:text-violet-500"
