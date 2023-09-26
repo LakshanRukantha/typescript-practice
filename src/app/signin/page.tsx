@@ -63,7 +63,6 @@ const SignIn = () => {
             </Link>
           </span>
         </div>
-
         <Button title="Sign In" />
       </form>
       <div className="flex max-w-sm mx-auto flex-row items-center justify-center">

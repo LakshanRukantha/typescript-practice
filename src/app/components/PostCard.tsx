@@ -26,7 +26,6 @@ const PostCard = (props: PostCardProps) => {
           </Link>
         </div>
       </div>
-
       <div>
         Posted on: <span className="italic text-sm">{props.date}</span>
       </div>
