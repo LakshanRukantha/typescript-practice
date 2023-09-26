@@ -3,11 +3,21 @@
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const SignIn = () => {
+  const session = useSession();
+  const router = useRouter();
+
+  if (session.status === "loading") {
+    return <div>Loading...</div>;
+  } else if (session.status === "authenticated") {
+    router.push("/dashboard");
+  }
+
   const handleAuth = () => {
     signIn("google", {
       callbackUrl: `${
@@ -48,7 +58,7 @@ const SignIn = () => {
           />
           <span className="text-right text-sm mt-1">
             Don&apos;t have an account?{" "}
-            <Link className="text-blue-500" href={"#"}>
+            <Link className="text-blue-500" href={"/signup"}>
               Sign Up
             </Link>
           </span>
