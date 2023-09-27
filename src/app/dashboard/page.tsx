@@ -45,11 +45,7 @@ const Dashboard = () => {
       </div>
     </div>
   ) : (
-    <div>
-      <h2>
-        Hey there! You are not signed in. Please sign in to view this page.
-      </h2>
-    </div>
+    <></>
   );
 };
 
