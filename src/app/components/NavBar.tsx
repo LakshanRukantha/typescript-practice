@@ -22,7 +22,7 @@ const Navbar = () => {
               >
                 <Button hasAction={false} title={"New Post"} />
               </Link>
-              <Link href={"/dashboard"}>
+              <Link href={"/profile"}>
                 <Image
                   src={session.data?.user?.image as string}
                   className="border rounded-full hover:shadow"

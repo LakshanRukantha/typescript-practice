@@ -5,7 +5,7 @@ import Image from "next/image";
 import Button from "../components/Button";
 import { useRouter } from "next/navigation";
 
-const Dashboard = () => {
+const Profile = () => {
   const session = useSession();
   const router = useRouter();
 
@@ -49,4 +49,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;

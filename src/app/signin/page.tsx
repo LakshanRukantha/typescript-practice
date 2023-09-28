@@ -15,7 +15,7 @@ const SignIn = () => {
   if (session.status === "loading") {
     return <div>Loading...</div>;
   } else if (session.status === "authenticated") {
-    router.push("/dashboard");
+    router.push("/profile");
   }
 
   const handleAuth = () => {
