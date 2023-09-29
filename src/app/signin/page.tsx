@@ -44,26 +44,26 @@ const SignIn = () => {
           <input
             type="text"
             placeholder="Username"
-            className="border-2 px-1 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
+            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
           />
         </div>
-        <div className="flex mb-2 flex-col">
+        <div className="flex mb-4 flex-col">
           <label className="text-lg" htmlFor="username">
             Password
           </label>
           <input
-            className="border-2 px-1 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
+            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
             type="password"
             placeholder="Password"
           />
-          <span className="text-right text-sm mt-1">
-            Don&apos;t have an account?{" "}
-            <Link className="text-blue-500" href={"/signup"}>
-              Sign Up
-            </Link>
-          </span>
         </div>
         <Button title="Sign In" />
+        <span className="text-right text-sm mt-1">
+          Don&apos;t have an account?{" "}
+          <Link className="text-blue-500" href={"/signup"}>
+            Sign Up
+          </Link>
+        </span>
       </form>
       <div className="flex max-w-sm mx-auto flex-row items-center justify-center">
         <hr className="h-[2px] bg-slate-300 flex-1" />
