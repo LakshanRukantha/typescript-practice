@@ -1,11 +1,15 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 const Navbar = () => {
   const session = useSession();
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" });
+  };
 
   return (
     <nav className="bg-violet-100 shadow-md py-3 px-3 mb-5 fixed w-full z-10">
@@ -16,16 +20,15 @@ const Navbar = () => {
         <div>
           {session.status === "authenticated" ? (
             <div className="flex gap-2 lg:gap-4">
-              <Link
-                className="text-violet-800 hover:text-violet-500"
-                href={"/new"}
-              >
-                <Button hasAction={false} title={"New Post"} />
-              </Link>
+              <Button
+                title="Sign Out"
+                hasAction={true}
+                taskFunc={handleSignOut}
+              />
               <Link href={"/profile"}>
                 <Image
                   src={session.data?.user?.image as string}
-                  className="border rounded-full hover:shadow"
+                  className="border-2 border-violet-500 rounded-full hover:shadow"
                   width={40}
                   height={40}
                   alt={`profile ${session.data?.user?.name}`}
@@ -35,9 +38,9 @@ const Navbar = () => {
           ) : (
             <Link
               className="text-violet-800 hover:text-violet-500"
-              href={"/signin"}
+              href={"/signup"}
             >
-              <Button title={"Sign In"} />
+              <Button title={"Sign Up"} />
             </Link>
           )}
         </div>

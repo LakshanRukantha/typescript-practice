@@ -1,8 +1,7 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Button from "../components/Button";
 import { useRouter } from "next/navigation";
 
 const Profile = () => {
@@ -12,9 +11,6 @@ const Profile = () => {
   if (session.status === "unauthenticated") {
     router.push("/signin");
   }
-  const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
-  };
 
   return session.status === "authenticated" ? (
     <div className="max-w-xl w-full mx-auto flex flex-col border p-4 gap-4 shadow rounded mt-8">
@@ -26,7 +22,6 @@ const Profile = () => {
           height={100}
           alt={`profile ${session.data?.user?.name}`}
         />
-        <Button title="Sign Out" hasAction={true} taskFunc={handleSignOut} />
       </div>
       <div>
         <h2 className="text-lg font-semibold text-slate-800">
@@ -45,7 +40,7 @@ const Profile = () => {
       </div>
     </div>
   ) : (
-    <></>
+    <>{/* Add loading state element here */}</>
   );
 };
 

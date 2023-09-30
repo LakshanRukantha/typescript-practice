@@ -12,7 +12,7 @@ type PostCardProps = {
 const PostCard = (props: PostCardProps) => {
   return (
     <div className="flex flex-col justify-between gap-2 p-2 border-2 transition-all bg-gradient-to-tr hover:shadow-md from-violet-100 rounded-md hover:border-violet-500">
-      <div className="font-semibold hover:underline hover:text-violet-800 text-lg text-slate-800 text-ellipsis line-clamp-2">
+      <div className="font-semibold hover:underline hover:text-violet-800 text-lg text-slate-800 text-ellipsis line-clamp-2 max-w-fit">
         {props.title}
       </div>
       <div>

@@ -10,7 +10,11 @@ const NewPost = () => {
   if (session.status === "unauthenticated") {
     router.push("/signin");
   }
-  return <div>New Post</div>;
+  return session.status === "authenticated" ? (
+    <div>New Post</div>
+  ) : (
+    <>Loading...</>
+  );
 };
 
 export default NewPost;
