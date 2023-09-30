@@ -57,7 +57,7 @@ const SignIn = () => {
             placeholder="Password"
           />
         </div>
-        <Button title="Sign In" />
+        <Button title="Sign In" priority="primary" />
         <span className="text-right text-sm mt-1">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href={"/signup"}>
@@ -75,8 +75,9 @@ const SignIn = () => {
           hasAction={true}
           taskFunc={handleAuth}
           title="Sign In with Google"
+          priority="primary"
         />
-        <Button title="Sign In with Github" />
+        <Button title="Sign In with Github" priority="primary" />
       </div>
     </div>
   );

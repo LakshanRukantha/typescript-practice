@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "./Button";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { HiOutlineLogout } from "react-icons/hi";
 
 const Navbar = () => {
   const session = useSession();
@@ -19,16 +20,18 @@ const Navbar = () => {
         </Link>
         <div>
           {session.status === "authenticated" ? (
-            <div className="flex gap-2 lg:gap-4">
+            <div className="flex gap-3 items-center">
               <Button
                 title="Sign Out"
+                priority="secondary"
                 hasAction={true}
+                icon={<HiOutlineLogout />}
                 taskFunc={handleSignOut}
               />
               <Link href={"/profile"}>
                 <Image
                   src={session.data?.user?.image as string}
-                  className="border-2 border-violet-500 rounded-full hover:shadow"
+                  className="hover:shadow-md lg:hover:animate-pulse ring-2 transition-all hover:ring-[2.5px] ring-violet-500 rounded-full"
                   width={40}
                   height={40}
                   alt={`profile ${session.data?.user?.name}`}
@@ -40,7 +43,7 @@ const Navbar = () => {
               className="text-violet-800 hover:text-violet-500"
               href={"/signup"}
             >
-              <Button title={"Sign Up"} />
+              <Button title={"Sign Up"} priority="primary" />
             </Link>
           )}
         </div>

@@ -83,7 +83,12 @@ const SignUp = () => {
             placeholder="Confirm Password..."
           />
         </div>
-        <Button hasAction={true} taskFunc={handleSignUp} title="Sign Up" />
+        <Button
+          hasAction={true}
+          taskFunc={handleSignUp}
+          title="Sign Up"
+          priority="primary"
+        />
         <span className="text-right text-sm mt-1">
           Already have an account?{" "}
           <Link className="text-blue-500" href={"/signin"}>
