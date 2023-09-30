@@ -4,7 +4,7 @@ import posts from "@/helpers/posts";
 export default function Home() {
   return (
     <main>
-      <div className="grid mt-5 mb-1 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+      <div className="grid my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
         {posts.map((post) => (
           <PostCard
             key={post.id}

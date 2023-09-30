@@ -27,7 +27,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="mt-5 mb-1 md:my-auto bg-gradient-to-tr from-violet-100 h-full max-w-lg w-full border-2 border-violet-200 shadow-md p-3 rounded-md mx-auto">
+    <div className="my-5 md:my-auto bg-gradient-to-tr from-violet-100 h-full max-w-lg w-full border-2 border-violet-200 shadow-md p-3 rounded-md mx-auto">
       <h2 className="text-2xl text-center font-semibold">Sign In</h2>
       <Image
         className="mx-auto w-14 h-14 mt-4"
