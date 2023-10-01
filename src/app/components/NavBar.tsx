@@ -25,7 +25,7 @@ const Navbar = () => {
                 title="Sign Out"
                 priority="secondary"
                 hasAction={true}
-                icon={<HiOutlineLogout />}
+                icon={<HiOutlineLogout className="text-xl" />}
                 taskFunc={handleSignOut}
               />
               <Link href={"/profile"}>

@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -75,9 +76,14 @@ const SignIn = () => {
           hasAction={true}
           taskFunc={handleAuth}
           title="Sign In with Google"
-          priority="primary"
+          icon={<AiOutlineGoogle className="text-xl" />}
+          priority="secondary"
         />
-        <Button title="Sign In with Github" priority="primary" />
+        <Button
+          title="Sign In with Github"
+          icon={<AiFillGithub className="text-xl" />}
+          priority="secondary"
+        />
       </div>
     </div>
   );
