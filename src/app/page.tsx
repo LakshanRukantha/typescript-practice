@@ -17,6 +17,7 @@ export default function Home() {
             title={post.title}
             content={post.content}
             date={post.date}
+            views={post.views}
             id={post.id}
           />
         ))}

@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { FiEye } from "react-icons/fi";
 
 type PostCardProps = {
   title: string;
   content: string;
   date: string;
+  views: number;
   id: string | number;
 };
 
@@ -26,8 +28,14 @@ const PostCard = (props: PostCardProps) => {
           </Link>
         </div>
       </div>
-      <div>
-        Posted on: <span className="italic text-sm">{props.date}</span>
+      <div className="flex justify-between items-center">
+        <p>
+          Posted on: <span className="italic text-sm">{props.date}</span>
+        </p>
+        <p className="flex items-center gap-1">
+          <FiEye />
+          {props.views}
+        </p>
       </div>
     </div>
   );

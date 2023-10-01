@@ -75,12 +75,12 @@ const SignIn = () => {
         <Button
           hasAction={true}
           taskFunc={handleAuth}
-          title="Sign In with Google"
+          title="Continue with Google"
           icon={<AiOutlineGoogle className="text-xl" />}
           priority="secondary"
         />
         <Button
-          title="Sign In with Github"
+          title="Continue with Github"
           icon={<AiFillGithub className="text-xl" />}
           priority="secondary"
         />
