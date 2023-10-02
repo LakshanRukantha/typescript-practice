@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import millify from "millify";
 import { FiEye } from "react-icons/fi";
+import { SlCalender } from "react-icons/sl";
 
 type PostCardProps = {
   title: string;
@@ -18,10 +20,12 @@ const PostCard = (props: PostCardProps) => {
         {props.title}
       </div>
       <div>
-        <div className="text-ellipsis line-clamp-3">{props.content}</div>
+        <div className="text-ellipsis line-clamp-3 text-slate-800">
+          {props.content}
+        </div>
         <div className="flex justify-end items-center">
           <Link
-            className="relative right-0 text-base hover:underline w-fit"
+            className="relative right-0 text-base hover:underline w-fit text-slate-800 hover:text-violet-800"
             href={"#"}
           >
             Read more
@@ -29,12 +33,12 @@ const PostCard = (props: PostCardProps) => {
         </div>
       </div>
       <div className="flex justify-between items-center">
-        <p>
-          Posted on: <span className="italic text-sm">{props.date}</span>
+        <p className="flex items-center gap-2">
+          <SlCalender /> <span className="italic text-sm">{props.date}</span>
         </p>
-        <p className="flex items-center gap-1">
+        <p className="flex items-center gap-1 text-slate-800">
           <FiEye />
-          {props.views}
+          {millify(props.views)}
         </p>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 
 type ButtonProps = {
   title: string;
+  type?: "button" | "submit" | "reset";
   priority: "primary" | "secondary";
   hasAction?: boolean;
   icon?: ReactNode;
@@ -12,6 +13,7 @@ type ButtonProps = {
 
 const Button = ({
   title,
+  type,
   priority,
   icon,
   hasAction,
@@ -32,7 +34,7 @@ const Button = ({
             ? "bg-violet-500 text-white lg:hover:bg-violet-400"
             : "border-violet-500 hover:bg-violet-500 hover:text-slate-50"
         }`}
-        type="button"
+        type={type ? type : "button"}
       >
         {icon && icon}
         {title}
@@ -46,7 +48,7 @@ const Button = ({
             ? "bg-violet-500 text-white lg:hover:bg-violet-400"
             : "border-violet-500 hover:bg-violet-500 hover:text-slate-50"
         }`}
-        type="button"
+        type={type ? type : "button"}
       >
         {icon && icon}
         {title}

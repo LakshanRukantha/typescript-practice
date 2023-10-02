@@ -4,7 +4,7 @@ const posts = [
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!",
     date: "2021-08-01",
-    views: 124,
+    views: 1243,
     id: 1,
   },
   {
@@ -44,7 +44,7 @@ const posts = [
     content:
       "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows you to build scalable and high-performance applications. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!",
     date: "2021-10-20",
-    views: 200,
+    views: 2340,
     id: 6,
   },
   {
@@ -60,7 +60,7 @@ const posts = [
     content:
       "CSS Grid Layout is a two-dimensional grid system that can handle both rows and columns. It's a powerful tool for creating complex layouts with CSS. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!",
     date: "2021-12-12",
-    views: 400,
+    views: 960,
     id: 8,
   },
 ];
