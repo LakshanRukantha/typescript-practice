@@ -13,6 +13,8 @@ import {
   AiFillGithub,
   AiOutlineWarning,
 } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import signInValidationSchema from "../schemas/SignInValidation";
 
 type SignInInputs = {
@@ -59,15 +61,17 @@ const SignIn = () => {
     });
   };
 
-  console.log(errors.email);
-
   // Submit Handler
   const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
-    console.log(data);
+    toast.warning(`${JSON.stringify(data)}`, {
+      position: toast.POSITION.TOP_CENTER,
+      draggable: false,
+    });
   };
 
   return (
     <div className="my-5 md:my-auto bg-gradient-to-tr from-violet-100 h-full max-w-lg w-full border-2 border-violet-200 shadow-md p-3 rounded-md mx-auto">
+      <ToastContainer />
       <h2 className="text-2xl text-center font-semibold">Sign In</h2>
       <Image
         className="mx-auto w-14 h-14 mt-4"
