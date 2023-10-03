@@ -3,13 +3,45 @@
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
+import {
+  AiOutlineGoogle,
+  AiFillGithub,
+  AiOutlineWarning,
+} from "react-icons/ai";
+import signInValidationSchema from "../schemas/SignInValidation";
+
+type SignInInputs = {
+  email: string;
+  password: string;
+};
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const SignIn = () => {
+  // React Hook Form
+  const form = useForm<SignInInputs>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    mode: "onTouched",
+    resolver: yupResolver(signInValidationSchema),
+  });
+  const { register, handleSubmit, reset, formState } = form;
+  const { errors, isSubmitSuccessful } = formState;
+
+  // Reset Form
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   const session = useSession();
   const router = useRouter();
 
@@ -27,6 +59,13 @@ const SignIn = () => {
     });
   };
 
+  console.log(errors.email);
+
+  // Submit Handler
+  const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="my-5 md:my-auto bg-gradient-to-tr from-violet-100 h-full max-w-lg w-full border-2 border-violet-200 shadow-md p-3 rounded-md mx-auto">
       <h2 className="text-2xl text-center font-semibold">Sign In</h2>
@@ -37,28 +76,56 @@ const SignIn = () => {
         height={80}
         alt="LR Blog"
       />
-      <form className="flex flex-col gap-3 max-w-sm mx-auto my-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 max-w-sm mx-auto my-4"
+        noValidate
+      >
         <div className="flex flex-col">
-          <label className="text-lg" htmlFor="username">
-            Username
+          <label className="text-lg" htmlFor="email">
+            Email
           </label>
           <input
+            id="email"
             type="text"
-            placeholder="Username"
-            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
+            placeholder="Enter your email..."
+            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+              errors.email
+                ? "border-red-500"
+                : "border-violet-200 focus:border-violet-500"
+            }`}
+            {...register("email")}
           />
+          {errors.email && (
+            <p className="flex items-center gap-1 text-xs text-red-500">
+              <AiOutlineWarning />
+              {errors.email?.message}
+            </p>
+          )}
         </div>
         <div className="flex mb-4 flex-col">
-          <label className="text-lg" htmlFor="username">
+          <label className="text-lg" htmlFor="password">
             Password
           </label>
           <input
-            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
+            id="password"
             type="password"
             placeholder="Password"
+            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+              errors.password
+                ? "border-red-500"
+                : "border-violet-200 focus:border-violet-500"
+            }`}
+            {...register("password")}
           />
+          {errors.password && (
+            <p className="flex items-center gap-1 text-xs text-red-500">
+              <AiOutlineWarning />
+              {errors.password?.message}
+            </p>
+          )}
         </div>
-        <Button title="Sign In" priority="primary" />
+        <Button type="submit" title="Sign In" priority="primary" />
         <span className="text-right text-sm mt-1">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href={"/signup"}>

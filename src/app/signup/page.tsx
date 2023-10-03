@@ -102,16 +102,17 @@ const SignUp = () => {
       >
         <div className="flex flex-col sm:flex-row w-full gap-3">
           <div className="flex flex-1 flex-col">
-            <label className="text-lg" htmlFor="first-name">
+            <label className="text-lg" htmlFor="firstName">
               First Name
             </label>
             <input
+              id="firstName"
               type="text"
               placeholder="Enter your first name..."
-              className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-                errors.firstName ? "border-red-500" : "border-violet-500"
-              } outline-none ${
-                errors.firstName ? "border-red-500" : "border-violet-200"
+              className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+                errors.firstName
+                  ? "border-red-500"
+                  : "border-violet-200 focus:border-violet-500"
               }`}
               {...register("firstName")}
             />
@@ -123,16 +124,17 @@ const SignUp = () => {
             )}
           </div>
           <div className="flex flex-1 flex-col">
-            <label className="text-lg" htmlFor="last-name">
+            <label className="text-lg" htmlFor="lastName">
               Last Name
             </label>
             <input
+              id="lastName"
               type="text"
               placeholder="Enter your last name..."
-              className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-                errors.lastName ? "border-red-500" : "border-violet-500"
-              } outline-none ${
-                errors.lastName ? "border-red-500" : "border-violet-200"
+              className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+                errors.lastName
+                  ? "border-red-500"
+                  : "border-violet-200 focus:border-violet-500"
               }`}
               {...register("lastName")}
             />
@@ -145,16 +147,17 @@ const SignUp = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <label className="text-lg" htmlFor="username">
+          <label className="text-lg" htmlFor="email">
             Email
           </label>
           <input
+            id="email"
             type="email"
             placeholder="Enter your email address..."
-            className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-              errors.email ? "border-red-500" : "border-violet-500"
-            } outline-none ${
-              errors.email ? "border-red-500" : "border-violet-200"
+            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+              errors.email
+                ? "border-red-500"
+                : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("email")}
           />
@@ -166,16 +169,17 @@ const SignUp = () => {
           )}
         </div>
         <div className="flex flex-col">
-          <label className="text-lg" htmlFor="username">
+          <label className="text-lg" htmlFor="password">
             Password
           </label>
           <input
+            id="password"
             type="password"
             placeholder="Enter your password..."
-            className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-              errors.password ? "border-red-500" : "border-violet-500"
-            } outline-none ${
-              errors.password ? "border-red-500" : "border-violet-200"
+            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+              errors.password
+                ? "border-red-500"
+                : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("password")}
           />
@@ -187,16 +191,17 @@ const SignUp = () => {
           )}
         </div>
         <div className="flex mb-4 flex-col">
-          <label className="text-lg" htmlFor="username">
+          <label className="text-lg" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <input
+            id="confirmPassword"
             type="password"
             placeholder="Confirm your password..."
-            className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-              errors.confirmPassword ? "border-red-500" : "border-violet-500"
-            } outline-none ${
-              errors.confirmPassword ? "border-red-500" : "border-violet-200"
+            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+              errors.confirmPassword
+                ? "border-red-500"
+                : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("confirmPassword")}
           />
