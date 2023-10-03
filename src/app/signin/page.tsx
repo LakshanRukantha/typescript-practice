@@ -84,7 +84,7 @@ const SignIn = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-sm mx-auto my-4"
-        noValidate
+        // noValidate
       >
         <div className="flex flex-col">
           <label className="text-lg" htmlFor="email">
