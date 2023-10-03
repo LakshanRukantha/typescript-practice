@@ -4,8 +4,8 @@ import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import userSignupSchema from "../validations/schemas/UserSignupSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { AiOutlineWarning } from "react-icons/ai";
@@ -21,6 +21,41 @@ type Inputs = {
   confirmPassword: string;
 };
 
+// Yup Validation Schema
+
+const schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters")
+    .max(50, "First name can be at most 25 characters"),
+
+  lastName: yup
+    .string()
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters")
+    .max(50, "Last name can be at most 25 characters"),
+
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Invalid email format"),
+
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
+      "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+    ),
+
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("password")], "Passwords must match"),
+});
+
 const SignUp = () => {
   // React Hook Form
   const form = useForm<Inputs>({
@@ -32,9 +67,8 @@ const SignUp = () => {
       confirmPassword: "",
     },
     mode: "onTouched",
-    resolver: yupResolver(userSignupSchema),
+    resolver: yupResolver(schema),
   });
-
   const { register, handleSubmit, reset, formState } = form;
   const { errors, isSubmitSuccessful } = formState;
 
@@ -55,7 +89,7 @@ const SignUp = () => {
     router.push("/profile");
   }
 
-  // SignUp Handler
+  // Submit Handler
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const response = await fetch("/api/signup", {
       method: "POST",
@@ -99,7 +133,6 @@ const SignUp = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-md mx-auto my-4"
-        noValidate
       >
         <div className="flex flex-col sm:flex-row w-full gap-3">
           <div className="flex flex-1 flex-col">

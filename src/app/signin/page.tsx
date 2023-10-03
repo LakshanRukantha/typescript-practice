@@ -3,48 +3,13 @@
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import {
-  AiOutlineGoogle,
-  AiFillGithub,
-  AiOutlineWarning,
-} from "react-icons/ai";
-import { yupResolver } from "@hookform/resolvers/yup";
-import userSigninSchema from "../validations/schemas/UserSigninSchema";
-import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-type SignInInputs = {
-  email: string;
-  password: string;
-};
+import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const SignIn = () => {
-  // React Hook Form
-  const form = useForm<SignInInputs>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    mode: "onTouched",
-    resolver: yupResolver(userSigninSchema),
-  });
-
-  const { register, handleSubmit, reset, formState } = form;
-  const { errors, isSubmitSuccessful } = formState;
-
-  // Reset Form
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
-
   const session = useSession();
   const router = useRouter();
 
@@ -54,15 +19,7 @@ const SignIn = () => {
     router.push("/profile");
   }
 
-  // SignIn Handler
-  const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
-    toast.warn(`${JSON.stringify(data)}`, {
-      position: toast.POSITION.TOP_CENTER,
-      draggable: false, // Disable dragging & solve error "Unable to preventDefault inside passive event listener invocation." on mobile devices
-    });
-  };
-
-  const handleAuthGoogle = () => {
+  const handleAuth = () => {
     signIn("google", {
       callbackUrl: `${
         isDevelopment ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
@@ -72,7 +29,6 @@ const SignIn = () => {
 
   return (
     <div className="my-5 md:my-auto bg-gradient-to-tr from-violet-100 h-full max-w-lg w-full border-2 border-violet-200 shadow-md p-3 rounded-md mx-auto">
-      <ToastContainer />
       <h2 className="text-2xl text-center font-semibold">Sign In</h2>
       <Image
         className="mx-auto w-14 h-14 mt-4"
@@ -81,54 +37,28 @@ const SignIn = () => {
         height={80}
         alt="LR Blog"
       />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-3 max-w-sm mx-auto my-4"
-        noValidate
-      >
+      <form className="flex flex-col gap-3 max-w-sm mx-auto my-4">
         <div className="flex flex-col">
-          <label className="text-lg" htmlFor="email">
-            Email
+          <label className="text-lg" htmlFor="username">
+            Username
           </label>
           <input
             type="text"
-            placeholder="Enter your email..."
-            className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-              errors.email ? "border-red-500" : "border-violet-500"
-            } outline-none ${
-              errors.email ? "border-red-500" : "border-violet-200"
-            }`}
-            {...register("email")}
+            placeholder="Username"
+            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
           />
-          {errors.email && (
-            <p className="flex items-center gap-1 text-xs text-red-500">
-              <AiOutlineWarning />
-              {errors.email?.message}
-            </p>
-          )}
         </div>
         <div className="flex mb-4 flex-col">
-          <label className="text-lg" htmlFor="email">
+          <label className="text-lg" htmlFor="username">
             Password
           </label>
           <input
-            className={`border-2 px-2 py-1 rounded text-slate-800 focus:${
-              errors.password ? "border-red-500" : "border-violet-500"
-            } outline-none ${
-              errors.password ? "border-red-500" : "border-violet-200"
-            }`}
+            className="border-2 px-2 py-1 rounded text-slate-800 focus:border-violet-500 outline-none"
             type="password"
             placeholder="Password"
-            {...register("password")}
           />
-          {errors.password && (
-            <p className="flex items-center gap-1 text-xs text-red-500">
-              <AiOutlineWarning />
-              {errors.password?.message}
-            </p>
-          )}
         </div>
-        <Button title="Sign In" type="submit" priority="primary" />
+        <Button title="Sign In" priority="primary" />
         <span className="text-right text-sm mt-1">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href={"/signup"}>
@@ -144,7 +74,7 @@ const SignIn = () => {
       <div className="flex flex-col max-w-sm mx-auto gap-4 my-4">
         <Button
           hasAction={true}
-          taskFunc={handleAuthGoogle}
+          taskFunc={handleAuth}
           title="Continue with Google"
           icon={<AiOutlineGoogle className="text-xl" />}
           priority="secondary"
