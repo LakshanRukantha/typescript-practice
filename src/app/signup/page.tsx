@@ -4,11 +4,14 @@ import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { AiOutlineWarning } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 type Inputs = {
   firstName: string;
@@ -18,14 +21,63 @@ type Inputs = {
   confirmPassword: string;
 };
 
+// Yup Validation Schema
+
+const schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters")
+    .max(50, "First name can be at most 25 characters"),
+
+  lastName: yup
+    .string()
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters")
+    .max(50, "Last name can be at most 25 characters"),
+
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Invalid email format"),
+
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
+      "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+    ),
+
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("password")], "Passwords must match"),
+});
+
 const SignUp = () => {
   // React Hook Form
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const form = useForm<Inputs>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    mode: "onTouched",
+    resolver: yupResolver(schema),
+  });
+  const { register, handleSubmit, reset, formState } = form;
+  const { errors, isSubmitSuccessful } = formState;
+
+  // Reset Form
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   // Session and Router
   const session = useSession();
@@ -39,7 +91,6 @@ const SignUp = () => {
 
   // Submit Handler
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    reset();
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: {
@@ -56,10 +107,12 @@ const SignUp = () => {
     if (response.status === 201) {
       toast.success(`${message}`, {
         position: toast.POSITION.TOP_CENTER,
+        draggable: false,
       });
     } else {
       toast.error(`${message}`, {
         position: toast.POSITION.TOP_CENTER,
+        draggable: false,
       });
       console.log(message);
     }
@@ -94,9 +147,7 @@ const SignUp = () => {
               } outline-none ${
                 errors.firstName ? "border-red-500" : "border-violet-200"
               }`}
-              {...register("firstName", {
-                required: "First name is required.",
-              })}
+              {...register("firstName")}
             />
             {errors.firstName && (
               <p className="flex items-center gap-1 text-xs text-red-500">
@@ -117,9 +168,7 @@ const SignUp = () => {
               } outline-none ${
                 errors.lastName ? "border-red-500" : "border-violet-200"
               }`}
-              {...register("lastName", {
-                required: "Last name is required.",
-              })}
+              {...register("lastName")}
             />
             {errors.lastName && (
               <p className="flex items-center gap-1 text-xs text-red-500">
@@ -141,9 +190,7 @@ const SignUp = () => {
             } outline-none ${
               errors.email ? "border-red-500" : "border-violet-200"
             }`}
-            {...register("email", {
-              required: "Email is required.",
-            })}
+            {...register("email")}
           />
           {errors.email && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -164,9 +211,7 @@ const SignUp = () => {
             } outline-none ${
               errors.password ? "border-red-500" : "border-violet-200"
             }`}
-            {...register("password", {
-              required: "Password is required.",
-            })}
+            {...register("password")}
           />
           {errors.password && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -187,9 +232,7 @@ const SignUp = () => {
             } outline-none ${
               errors.confirmPassword ? "border-red-500" : "border-violet-200"
             }`}
-            {...register("confirmPassword", {
-              required: "Confirm password is required.",
-            })}
+            {...register("confirmPassword")}
           />
           {errors.confirmPassword && (
             <p className="flex items-center gap-1 text-xs text-red-500">
