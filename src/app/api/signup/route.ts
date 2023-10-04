@@ -27,15 +27,21 @@ export const POST = async (req: NextRequest) => {
       console.log("Password: ", password);
       console.log("Confirm Password: ", confirmPassword);
 
-      NextResponse.json(
+      return NextResponse.json(
         { message: "Registration Successful!" },
         { status: 201 }
       );
     } else {
-      NextResponse.json({ message: "Registration Failed!" }, { status: 500 });
+      return NextResponse.json(
+        { message: "Registration Failed!" },
+        { status: 500 }
+      );
     }
   } catch (error) {
     console.log(error);
-    NextResponse.json({ message: "Internal Server Error!" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Internal Server Error!" },
+      { status: 500 }
+    );
   }
 };
