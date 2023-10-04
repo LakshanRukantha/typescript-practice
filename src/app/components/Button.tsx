@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import Spinner from "./Spinner";
 
 type ButtonProps = {
   title: string;
@@ -9,6 +10,8 @@ type ButtonProps = {
   hasAction?: boolean;
   icon?: ReactNode;
   taskFunc?: () => void;
+  isLoading?: boolean;
+  spinner?: boolean;
 };
 
 const Button = ({
@@ -18,6 +21,8 @@ const Button = ({
   icon,
   hasAction,
   taskFunc,
+  isLoading,
+  spinner,
 }: ButtonProps) => {
   if (hasAction) {
     return (
@@ -29,12 +34,15 @@ const Button = ({
               }
             : () => {}
         }
-        className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 active:scale-95 hover:shadow-sm ${
+        className={`flex flex-nowrap whitespace-nowrap items-center justify-center text-slate-800 gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 active:scale-95 hover:shadow-sm ${
           priority === "primary"
-            ? "bg-violet-500 text-white lg:hover:bg-violet-400"
+            ? isLoading
+              ? "bg-violet-400 text-slate-50 pointer-events-none"
+              : "bg-violet-500 text-slate-50 lg:hover:bg-violet-400"
             : "border-violet-500 hover:bg-violet-500 hover:text-slate-50"
         }`}
         type={type ? type : "button"}
+        disabled={isLoading}
       >
         {icon && icon}
         {title}
@@ -45,11 +53,15 @@ const Button = ({
       <button
         className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 active:scale-95 hover:shadow-sm ${
           priority === "primary"
-            ? "bg-violet-500 text-white lg:hover:bg-violet-400"
+            ? isLoading
+              ? "bg-violet-400 text-slate-50 pointer-events-none"
+              : "bg-violet-500 text-slate-50 lg:hover:bg-violet-400"
             : "border-violet-500 hover:bg-violet-500 hover:text-slate-50"
         }`}
         type={type ? type : "button"}
+        disabled={isLoading}
       >
+        {isLoading && spinner && <Spinner />}
         {icon && icon}
         {title}
       </button>

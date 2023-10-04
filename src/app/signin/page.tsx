@@ -35,7 +35,7 @@ const SignIn = () => {
     resolver: yupResolver(signInValidationSchema),
   });
   const { register, handleSubmit, reset, formState } = form;
-  const { errors, isSubmitSuccessful } = formState;
+  const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   // Reset Form
   useEffect(() => {
@@ -63,10 +63,14 @@ const SignIn = () => {
 
   // Submit Handler
   const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
-    toast.warning(`${JSON.stringify(data)}`, {
-      position: toast.POSITION.TOP_CENTER,
-      draggable: false,
-    });
+    try {
+      toast.warning(`${JSON.stringify(data)}`, {
+        position: toast.POSITION.TOP_CENTER,
+        draggable: false,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -99,6 +103,7 @@ const SignIn = () => {
                 : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("email")}
+            disabled={isSubmitting}
           />
           {errors.email && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -121,6 +126,7 @@ const SignIn = () => {
                 : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("password")}
+            disabled={isSubmitting}
           />
           {errors.password && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -129,7 +135,13 @@ const SignIn = () => {
             </p>
           )}
         </div>
-        <Button type="submit" title="Sign In" priority="primary" />
+        <Button
+          type="submit"
+          title={isSubmitting ? "Signing In..." : "Sign In"}
+          priority="primary"
+          isLoading={isSubmitting}
+          spinner={true}
+        />
         <span className="text-right text-sm mt-1">
           Don&apos;t have an account?{" "}
           <Link className="text-blue-500" href={"/signup"}>
@@ -149,11 +161,13 @@ const SignIn = () => {
           title="Continue with Google"
           icon={<AiOutlineGoogle className="text-xl" />}
           priority="secondary"
+          isLoading={isSubmitting}
         />
         <Button
           title="Continue with Github"
           icon={<AiFillGithub className="text-xl" />}
           priority="secondary"
+          isLoading={isSubmitting}
         />
       </div>
     </div>

@@ -35,7 +35,7 @@ const SignUp = () => {
     resolver: yupResolver(signUpValidationSchema),
   });
   const { register, handleSubmit, reset, formState } = form;
-  const { errors, isSubmitSuccessful } = formState;
+  const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   // Reset Form
   useEffect(() => {
@@ -69,7 +69,7 @@ const SignUp = () => {
     const message = await res.message;
 
     // Notification Toast
-    if (response.status === 201) {
+    if (response.ok) {
       toast.success(`${message}`, {
         position: toast.POSITION.TOP_CENTER,
         draggable: false,
@@ -115,6 +115,7 @@ const SignUp = () => {
                   : "border-violet-200 focus:border-violet-500"
               }`}
               {...register("firstName")}
+              disabled={isSubmitting}
             />
             {errors.firstName && (
               <p className="flex items-center gap-1 text-xs text-red-500">
@@ -137,6 +138,7 @@ const SignUp = () => {
                   : "border-violet-200 focus:border-violet-500"
               }`}
               {...register("lastName")}
+              disabled={isSubmitting}
             />
             {errors.lastName && (
               <p className="flex items-center gap-1 text-xs text-red-500">
@@ -160,6 +162,7 @@ const SignUp = () => {
                 : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("email")}
+            disabled={isSubmitting}
           />
           {errors.email && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -182,6 +185,7 @@ const SignUp = () => {
                 : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("password")}
+            disabled={isSubmitting}
           />
           {errors.password && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -204,6 +208,7 @@ const SignUp = () => {
                 : "border-violet-200 focus:border-violet-500"
             }`}
             {...register("confirmPassword")}
+            disabled={isSubmitting}
           />
           {errors.confirmPassword && (
             <p className="flex items-center gap-1 text-xs text-red-500">
@@ -212,7 +217,13 @@ const SignUp = () => {
             </p>
           )}
         </div>
-        <Button type="submit" title="Sign Up" priority="primary" />
+        <Button
+          type="submit"
+          title={isSubmitting ? "Signing Up..." : "Sign Up"}
+          priority="primary"
+          isLoading={isSubmitting}
+          spinner={true}
+        />
         <span className="text-right text-sm mt-1">
           Already have an account?{" "}
           <Link className="text-blue-500" href={"/signin"}>
