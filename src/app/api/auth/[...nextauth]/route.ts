@@ -4,7 +4,7 @@ import NextAuth from "next-auth";
 
 const handler: NextAuthOptions = NextAuth({
   providers: [googleAuth, githubAuth],
-  secret: process.env.SECRET,
+  secret: process.env.AUTH_SECRET as string,
 });
 
 export { handler as GET, handler as POST };
