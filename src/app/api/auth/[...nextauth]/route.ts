@@ -1,10 +1,6 @@
-import { NextAuthOptions } from "next-auth";
-import { githubAuth, googleAuth } from "@/app/utils/AuthOptionProviders";
 import NextAuth from "next-auth";
+import { AuthOptionProviders } from "@/app/utils/AuthOptionProviders";
 
-const handler = NextAuth({
-  providers: [googleAuth, githubAuth],
-  secret: process.env.AUTH_SECRET as string,
-}) as NextAuthOptions;
+const handler = NextAuth(AuthOptionProviders);
 
 export { handler as GET, handler as POST };
