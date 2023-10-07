@@ -53,8 +53,16 @@ const SignIn = () => {
     router.push("/profile");
   }
 
-  const handleAuth = () => {
+  const handleAuthGoogle = () => {
     signIn("google", {
+      callbackUrl: `${
+        isDevelopment ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
+      }`,
+    });
+  };
+
+  const handleAuthGithub = () => {
+    signIn("github", {
       callbackUrl: `${
         isDevelopment ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
       }`,
@@ -157,13 +165,15 @@ const SignIn = () => {
       <div className="flex flex-col max-w-sm mx-auto gap-4 my-4">
         <Button
           hasAction={true}
-          taskFunc={handleAuth}
+          taskFunc={handleAuthGoogle}
           title="Continue with Google"
           icon={<AiOutlineGoogle className="text-xl" />}
           priority="secondary"
           isLoading={isSubmitting}
         />
         <Button
+          hasAction={true}
+          taskFunc={handleAuthGithub}
           title="Continue with Github"
           icon={<AiFillGithub className="text-xl" />}
           priority="secondary"
