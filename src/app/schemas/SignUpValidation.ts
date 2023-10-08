@@ -37,7 +37,7 @@ const signUpValidationSchema = yup.object().shape({
     .required("Email is required")
     .email("Invalid email format")
     .test("email", "Email already exists", async (email: string) => {
-      return (await validateEmailExists(email)) as boolean;
+      return !(await validateEmailExists(email)) as boolean;
     }),
 
   password: yup

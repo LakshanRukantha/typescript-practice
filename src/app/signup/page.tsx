@@ -35,7 +35,7 @@ const SignUp = () => {
     resolver: yupResolver(signUpValidationSchema),
   });
   const { register, handleSubmit, reset, formState } = form;
-  const { errors, isSubmitting, isSubmitSuccessful } = formState;
+  const { errors, isSubmitting, isValid, isSubmitSuccessful } = formState;
 
   // Reset Form
   useEffect(() => {
@@ -221,7 +221,7 @@ const SignUp = () => {
           type="submit"
           title={isSubmitting ? "Signing Up..." : "Sign Up"}
           priority="primary"
-          isLoading={isSubmitting}
+          isLoading={isSubmitting && isValid}
           spinner={true}
         />
         <span className="text-right text-sm mt-1">

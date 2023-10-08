@@ -14,44 +14,54 @@ export const POST = async (req: NextRequest) => {
   try {
     const { firstName, lastName, email, password, confirmPassword } =
       (await req.json()) as RegistrationBody;
-    if (
-      firstName &&
-      lastName &&
-      email &&
-      password &&
-      confirmPassword &&
-      password === confirmPassword
-    ) {
-      // save to database
-      await connectDB();
-      const user = await UserModel.create({
-        firstName,
-        lastName,
-        email,
-        password,
-      });
 
-      if (!user) {
-        return NextResponse.json(
-          { message: "Registration Failed!" },
-          { status: 500 }
-        );
-      }
-
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
       return NextResponse.json(
-        { message: "Registration Successful!" },
-        { status: 201 }
+        { message: "Please fill in all required fields." },
+        { status: 400 }
       );
-    } else {
+    }
+
+    if (password !== confirmPassword) {
       return NextResponse.json(
-        { message: "Registration Failed!" },
+        { message: "Passwords do not match." },
+        { status: 400 }
+      );
+    }
+
+    await connectDB();
+
+    const emailExists = await UserModel.exists({ email });
+
+    if (emailExists) {
+      return NextResponse.json(
+        { message: "Email already exists." },
+        { status: 400 }
+      );
+    }
+
+    const user = await UserModel.create({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { message: "Registration failed." },
         { status: 500 }
       );
     }
-  } catch (error) {
-    console.log(error);
+
     return NextResponse.json(
-      { message: "Internal Server Error!" },
+      { message: "Registration successful." },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal server error." },
       { status: 500 }
     );
   }
