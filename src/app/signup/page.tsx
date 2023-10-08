@@ -219,7 +219,7 @@ const SignUp = () => {
         </div>
         <Button
           type="submit"
-          title={isSubmitting ? "Signing Up..." : "Sign Up"}
+          title={isSubmitting && isValid ? "Signing Up..." : "Sign Up"}
           priority="primary"
           isLoading={isSubmitting && isValid}
           spinner={true}
