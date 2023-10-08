@@ -1,5 +1,24 @@
 import * as yup from "yup";
 
+const validateEmailExists = async (email: string) => {
+  if (email) {
+    const response = await fetch("/api/emailExists", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const { exist } = await response.json();
+
+    if (exist) {
+      return true; // Email exists
+    }
+    return false; // Email does not exist
+  }
+};
+
 const signUpValidationSchema = yup.object().shape({
   firstName: yup
     .string()
@@ -16,7 +35,10 @@ const signUpValidationSchema = yup.object().shape({
   email: yup
     .string()
     .required("Email is required")
-    .email("Invalid email format"),
+    .email("Invalid email format")
+    .test("email", "Email already exists", async (email: string) => {
+      return (await validateEmailExists(email)) as boolean;
+    }),
 
   password: yup
     .string()

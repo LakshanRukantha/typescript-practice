@@ -1,3 +1,5 @@
+import connectDB from "@/app/libs/dbConnection";
+import UserModel from "@/app/schemas/UserSchema";
 import { NextRequest, NextResponse } from "next/server";
 
 type RegistrationBody = {
@@ -21,11 +23,20 @@ export const POST = async (req: NextRequest) => {
       password === confirmPassword
     ) {
       // save to database
-      console.log("First Name: ", firstName);
-      console.log("Last Name: ", lastName);
-      console.log("Email: ", email);
-      console.log("Password: ", password);
-      console.log("Confirm Password: ", confirmPassword);
+      await connectDB();
+      const user = await UserModel.create({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+
+      if (!user) {
+        return NextResponse.json(
+          { message: "Registration Failed!" },
+          { status: 500 }
+        );
+      }
 
       return NextResponse.json(
         { message: "Registration Successful!" },
