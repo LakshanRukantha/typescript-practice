@@ -1,6 +1,7 @@
 import connectDB from "@/app/libs/dbConnection";
 import UserModel from "@/app/schemas/UserSchema";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 type RegistrationBody = {
   firstName: string;
@@ -40,11 +41,15 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    // Hash the password for security
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = await UserModel.create({
       firstName,
       lastName,
       email,
-      password,
+      password: hashedPassword,
     });
 
     if (!user) {
