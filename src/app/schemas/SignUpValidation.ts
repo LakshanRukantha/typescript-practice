@@ -24,19 +24,37 @@ const signUpValidationSchema = yup.object().shape({
     .string()
     .required("First name is required")
     .min(2, "First name must be at least 2 characters")
-    .max(50, "First name can be at most 25 characters"),
+    .max(20, "First name can be at most 25 characters")
+    .test(
+      "letters-only",
+      "First name must consist of letters only.",
+      (value) => {
+        return /^[A-Za-z]*$/.test(value);
+      }
+    ),
 
   lastName: yup
     .string()
     .required("Last name is required")
     .min(2, "Last name must be at least 2 characters")
-    .max(50, "Last name can be at most 25 characters"),
+    .max(20, "Last name can be at most 25 characters")
+    .test(
+      "letters-only",
+      "Last name must consist of letters only.",
+      (value) => {
+        return /^[A-Za-z]*$/.test(value);
+      }
+    ),
 
   email: yup
     .string()
     .required("Email is required")
     .email("Invalid email format")
-    .test("email", "Email already exists", async (email: string) => {
+    .test("is-valid-email", "Invalid email format", (value) => {
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      return emailRegex.test(value);
+    })
+    .test("email-exist", "Email already exists", async (email: string) => {
       return !(await validateEmailExists(email)) as boolean;
     }),
 
