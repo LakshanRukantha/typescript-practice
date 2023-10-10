@@ -34,7 +34,7 @@ const Button = ({
               }
             : () => {}
         }
-        className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 active:scale-95 hover:shadow-sm ${
+        className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 border-transparent active:scale-95 hover:shadow-sm ${
           priority === "primary"
             ? isLoading
               ? "bg-violet-400 text-slate-50 pointer-events-none"
@@ -51,7 +51,7 @@ const Button = ({
   } else {
     return (
       <button
-        className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 active:scale-95 hover:shadow-sm ${
+        className={`flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 py-2 h-fit transition-all font-semibold px-4 rounded-md border-2 border-transparent active:scale-95 hover:shadow-sm ${
           priority === "primary"
             ? isLoading
               ? "bg-violet-400 text-slate-50 pointer-events-none"
