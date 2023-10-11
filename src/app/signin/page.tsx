@@ -22,7 +22,7 @@ type SignInInputs = {
   password: string;
 };
 
-const isDevelopment = process.env.NODE_ENV === "development";
+const nextPublicUrl = process.env.NEXT_PUBLIC_URL as string;
 
 const SignIn = () => {
   // React Hook Form
@@ -55,17 +55,13 @@ const SignIn = () => {
 
   const handleAuthGoogle = () => {
     signIn("google", {
-      callbackUrl: `${
-        isDevelopment ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
-      }`,
+      callbackUrl: nextPublicUrl,
     });
   };
 
   const handleAuthGithub = () => {
     signIn("github", {
-      callbackUrl: `${
-        isDevelopment ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
-      }`,
+      callbackUrl: nextPublicUrl,
     });
   };
 
