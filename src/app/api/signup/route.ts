@@ -23,6 +23,27 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    // Revalidate first and last name
+    const nameRegex = /^[a-zA-Z]+$/;
+
+    if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+      return NextResponse.json(
+        { message: "First and last name must consist of letters only." },
+        { status: 400 }
+      );
+    }
+
+    // Revalidate email
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { message: "Invalid email format." },
+        { status: 400 }
+      );
+    }
+
+    // Revalidate password
     if (password !== confirmPassword) {
       return NextResponse.json(
         { message: "Passwords do not match." },
@@ -41,17 +62,24 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    // Hash the password for security
+    // Generate a salt for the password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Finalize the values to be saved to the database
+    const finalFirstName = firstName.replace(/\s/g, "");
+    const finalLastName = lastName.replace(/\s/g, "");
+    const finalEmail = email.toLocaleLowerCase().replace(/\s/g, "");
+    const finalPassword = await bcrypt.hash(password, salt); // Hash the password for security
+
+    // Save the user to the database
     const user = await UserModel.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
+      firstName: finalFirstName,
+      lastName: finalLastName,
+      email: finalEmail,
+      password: finalPassword,
     });
 
+    // Check if the user was saved successfully or not
     if (!user) {
       return NextResponse.json(
         { message: "Registration failed." },

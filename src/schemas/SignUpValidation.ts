@@ -19,6 +19,8 @@ const validateEmailExists = async (email: string) => {
   }
 };
 
+const nameRegex = /^[a-zA-Z]+$/;
+
 const signUpValidationSchema = yup.object().shape({
   firstName: yup
     .string()
@@ -29,7 +31,7 @@ const signUpValidationSchema = yup.object().shape({
       "letters-only",
       "First name must consist of letters only.",
       (value) => {
-        return /^[A-Za-z]*$/.test(value);
+        return nameRegex.test(value);
       }
     ),
 
@@ -42,7 +44,7 @@ const signUpValidationSchema = yup.object().shape({
       "letters-only",
       "Last name must consist of letters only.",
       (value) => {
-        return /^[A-Za-z]*$/.test(value);
+        return nameRegex.test(value);
       }
     ),
 
