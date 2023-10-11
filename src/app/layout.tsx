@@ -1,4 +1,4 @@
-// import "./globals.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import NavBar from "./components/NavBar";
 import AuthProvider from "./utils/AuthProvider";
