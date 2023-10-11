@@ -3,7 +3,7 @@ const posts = [
     title: "How to setup Bun.js to your windows computer?",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!",
-    date: "2023-08-22",
+    date: "2021-08-01",
     views: 1243,
     id: 1,
   },
@@ -59,7 +59,7 @@ const posts = [
     title: "Introduction to CSS Grid Layout",
     content:
       "CSS Grid Layout is a two-dimensional grid system that can handle both rows and columns. It's a powerful tool for creating complex layouts with CSS. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!",
-    date: "2011-12-12",
+    date: "2021-12-12",
     views: 960,
     id: 8,
   },

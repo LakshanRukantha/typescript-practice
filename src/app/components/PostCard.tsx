@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import millify from "millify";
-import { format, isThisYear } from "date-fns";
 import { FiEye } from "react-icons/fi";
 import { SlCalender } from "react-icons/sl";
 
@@ -12,12 +11,6 @@ type PostCardProps = {
   date: string;
   views: number;
   id: string | number;
-};
-
-const formatDate = (date: string) => {
-  const isInCurrentYear = isThisYear(new Date(date)) as boolean;
-  const dateFormat = isInCurrentYear ? "MMM d" : "MMM d, yyyy";
-  return format(new Date(date), dateFormat) as string;
 };
 
 const PostCard = (props: PostCardProps) => {
@@ -41,10 +34,7 @@ const PostCard = (props: PostCardProps) => {
       </div>
       <div className="flex justify-between items-center">
         <p className="flex items-center gap-2">
-          <SlCalender />{" "}
-          <span className="italic text-sm">
-            {formatDate(props.date as string)}
-          </span>
+          <SlCalender /> <span className="italic text-sm">{props.date}</span>
         </p>
         <p className="flex items-center gap-1 text-slate-800">
           <FiEye />
