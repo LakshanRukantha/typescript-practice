@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { HiOutlineLogout } from "react-icons/hi";
 
-const Navbar = () => {
+const NavBar = () => {
   const session = useSession();
 
   const handleSignOut = () => {
@@ -52,4 +52,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

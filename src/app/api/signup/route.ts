@@ -1,5 +1,5 @@
-import connectDB from "@/app/libs/dbConnection";
-import UserModel from "@/app/schemas/UserSchema";
+import connectDB from "@/libs/dbConnection";
+import UserModel from "@/schemas/UserSchema";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Button from "../components/Button";
+import Button from "@/components/Button";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import signUpValidationSchema from "../schemas/SignUpValidation";
+import signUpValidationSchema from "@/schemas/SignUpValidation";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { AiOutlineWarning } from "react-icons/ai";

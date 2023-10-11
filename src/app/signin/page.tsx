@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Button from "../components/Button";
+import Button from "@/components/Button";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -15,7 +15,7 @@ import {
 } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import signInValidationSchema from "../schemas/SignInValidation";
+import signInValidationSchema from "@/schemas/SignInValidation";
 
 type SignInInputs = {
   email: string;

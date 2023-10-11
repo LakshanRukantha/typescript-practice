@@ -1,9 +1,9 @@
 "use client";
 
-import PostCard from "./components/PostCard";
+import PostCard from "@/components/PostCard";
 import posts from "@/helpers/posts";
 import { useSession } from "next-auth/react";
-import NewArticleBtn from "./components/NewArticleBtn";
+import NewArticleBtn from "@/components/NewArticleBtn";
 
 export default function Home() {
   const session = useSession();
