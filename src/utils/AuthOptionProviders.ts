@@ -49,8 +49,9 @@ export const AuthOptionProviders: NextAuthOptions = {
           }
         } else {
           // last login or online status update feature
-          console.log("Exists ", token.email);
-          console.log(new Date());
+          console.log(
+            `🔄️ Reloading session... (${token.email}) ${new Date().toISOString()}`
+          );
         }
 
         return session;

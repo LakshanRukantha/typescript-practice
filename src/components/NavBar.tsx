@@ -1,16 +1,11 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { HiOutlineLogout } from "react-icons/hi";
 
 const NavBar = () => {
   const session = useSession();
-
-  const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
-  };
 
   return (
     <nav className="bg-violet-100 shadow-md py-3 px-3 mb-5 fixed w-full z-10">
@@ -21,13 +16,6 @@ const NavBar = () => {
         <div>
           {session.status === "authenticated" ? (
             <div className="flex gap-3 items-center">
-              <Button
-                title="Sign Out"
-                priority="secondary"
-                hasAction={true}
-                icon={<HiOutlineLogout className="text-xl" />}
-                taskFunc={handleSignOut}
-              />
               <Link href={"/profile"}>
                 <Image
                   src={session.data?.user?.image as string}
