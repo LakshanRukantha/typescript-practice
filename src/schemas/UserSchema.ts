@@ -5,6 +5,8 @@ type UserSchema = {
   lastName: string;
   email: string;
   password: string;
+  avatar: string;
+  method: "email" | "oauth";
 };
 
 const UserSchema = new Schema<UserSchema>(
@@ -22,6 +24,14 @@ const UserSchema = new Schema<UserSchema>(
       required: true,
     },
     password: {
+      type: String,
+      required: false,
+    },
+    avatar: {
+      type: String,
+      required: true,
+    },
+    method: {
       type: String,
       required: true,
     },

@@ -11,6 +11,8 @@ type RegistrationBody = {
   confirmPassword: string;
 };
 
+const avatarBaseURL = process.env.AVATAR_BASE_URL as string;
+
 export const POST = async (req: NextRequest) => {
   try {
     const { firstName, lastName, email, password, confirmPassword } =
@@ -70,6 +72,7 @@ export const POST = async (req: NextRequest) => {
     const finalLastName = lastName.replace(/\s/g, "");
     const finalEmail = email.toLocaleLowerCase().replace(/\s/g, "");
     const finalPassword = await bcrypt.hash(password, salt); // Hash the password for security
+    const finalAvatar = `${avatarBaseURL}${finalFirstName}+${finalLastName}`;
 
     // Save the user to the database
     const user = await UserModel.create({
@@ -77,6 +80,8 @@ export const POST = async (req: NextRequest) => {
       lastName: finalLastName,
       email: finalEmail,
       password: finalPassword,
+      avatar: finalAvatar,
+      method: "email",
     });
 
     // Check if the user was saved successfully or not
