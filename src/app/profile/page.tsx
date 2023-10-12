@@ -19,17 +19,18 @@ const Profile = () => {
   };
 
   return session.status === "authenticated" ? (
-    <div className="w-full mx-auto flex flex-col border md:p-4 shadow rounded my-5">
-      <div className="relative flex max-h-[75px] flex-row rounded-t bg-violet-100 items-start justify-between p-4">
-        <div className="relative top-2">
+    <div className="w-full mx-auto flex flex-col border md:p-4 shadow rounded-md my-5">
+      <div className="relative flex max-h-[75px] flex-row rounded-t md:rounded-t bg-violet-100 items-start justify-between p-4">
+        <div className="relative flex items-center justify-center top-2">
           <Image
             src={session.data?.user?.image as string}
-            className="relative border-8 border-violet-100 outline outline-2 hover:outline-violet-500 transition-all rounded-full"
+            className="relative border-8 border-violet-100 outline outline-2 h-24 w-24 outline-white transition-all rounded-full"
             width={100}
             height={100}
             alt={`profile ${session.data?.user?.name}`}
           />
-          <div className="absolute flex h-3 w-3 top-2 right-2">
+          <span className="absolute animate-spin duration-1000 h-[100px] w-[100px] rounded-full mx-auto border-2 border-transparent hover:border-y-violet-500"></span>
+          <div className="absolute flex items-center justify-center h-4 w-4 top-[6px] right-[6px]">
             <span className="absolute animate-ping rounded-full h-3 w-3 bg-green-500"></span>
             <span className="inline-flex rounded-full h-3 w-3 bg-green-500"></span>
           </div>
