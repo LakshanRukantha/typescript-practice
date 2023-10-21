@@ -31,7 +31,10 @@ const ProfileCard = (props: ProfileCardProps) => {
             alt={`Avatar ${props.name}`}
           />
           <span className="absolute animate-spin duration-1000 h-[100px] w-[100px] rounded-full mx-auto border-2 border-transparent hover:border-y-violet-500"></span>
-          <div className="absolute flex items-center justify-center h-4 w-4 top-[6px] right-[6px]">
+          <div
+            className="absolute flex items-center justify-center h-4 w-4 top-[6px] right-[6px]"
+            title={`${props.name} is online.`}
+          >
             <span className="absolute animate-ping rounded-full h-3 w-3 bg-green-500"></span>
             <span className="inline-flex rounded-full h-3 w-3 bg-green-500"></span>
           </div>

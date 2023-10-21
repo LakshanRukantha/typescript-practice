@@ -6,6 +6,7 @@ import posts from "@/helpers/posts";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UserStatisticsCard from "@/components/UserStatisticsCard";
+import NewArticleBtn from "@/components/NewArticleBtn";
 
 const Profile = () => {
   const session = useSession();
@@ -25,7 +26,11 @@ const Profile = () => {
         image={session.data.user?.image as string}
       />
       <div className="relative flex flex-col md:justify-between md:flex-row items-start gap-4 mb-4">
-        <UserStatisticsCard />
+        <div className="w-full flex flex-col gap-4 bg-white border-2 shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
+          <UserStatisticsCard />
+          <hr />
+          <NewArticleBtn url="/new" />
+        </div>
         <div className="w-full flex flex-col gap-4 md:w-2/3">
           {posts.map((post) => (
             <PostCard
