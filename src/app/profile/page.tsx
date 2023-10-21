@@ -19,6 +19,7 @@ const Profile = () => {
     <>
       <ProfileCard
         name={session.data.user?.name as string}
+        about="I am a Full Stack Developer and a UI/UX Designer."
         email={session.data.user?.email as string}
         image={session.data.user?.image as string}
       />

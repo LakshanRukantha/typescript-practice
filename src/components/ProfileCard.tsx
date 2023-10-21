@@ -1,12 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { signOut } from "next-auth/react";
 import Button from "./Button";
 import { HiOutlineLogout, HiOutlineMail } from "react-icons/hi";
+import { RiCake2Line, RiTwitterXFill } from "react-icons/ri";
+import { AiFillGithub } from "react-icons/ai";
 
 type ProfileCardProps = {
   name: string;
+  about?: string;
   email: string;
   image: string;
+  urls?: string[];
 };
 
 const handleSignOut = () => {
@@ -59,13 +64,46 @@ const ProfileCard = (props: ProfileCardProps) => {
         </div> */}
         </div>
       </div>
-      <div className="pt-16 pb-4 md:pb-0 px-4 md:px-0">
+      <div className="pt-14 pb-4 md:pb-0 px-4 md:px-0">
         <h1 className="text-3xl font-bold text-slate-800">{props.name}</h1>
-
-        <p className="text-gray-500 flex items-center gap-1">
-          <HiOutlineMail className="text-xl mt-[1px]" />
-          <span>{props.email}</span>
-        </p>
+        {props.about && (
+          <p className="text-gray-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
+            {props.about}
+          </p>
+        )}
+        <hr className="bg-slate-500 my-3" />
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
+          <div className="flex flex-wrap items-center gap-3 md:gap-4">
+            <p className="text-gray-500 flex items-center gap-1">
+              <HiOutlineMail className="text-xl mt-[1px]" />
+              <span>{props.email}</span>
+            </p>
+            <p className="text-gray-500 flex items-center gap-1">
+              <RiCake2Line className="text-xl mt-[1px]" />
+              <span>Joined on 2023-08-15</span>
+            </p>
+          </div>
+          <div className="flex items-center gap-3 md:gap-4">
+            {!props.urls?.includes("github") && (
+              <Link
+                href={""}
+                className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1"
+              >
+                <AiFillGithub className="text-xl mt-[1px]" />
+                <span>GitHub</span>
+              </Link>
+            )}
+            {!props.urls?.includes("twitter") && (
+              <Link
+                href={""}
+                className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1"
+              >
+                <RiTwitterXFill className="text-xl mt-[1px]" />
+                <span>Twitter</span>
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
