@@ -26,7 +26,7 @@ const Profile = () => {
         image={session.data.user?.image as string}
       />
       <div className="relative flex flex-col md:justify-between md:flex-row items-start gap-4 mb-4">
-        <div className="w-full flex flex-col gap-4 bg-white border-2 shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
+        <div className="w-full flex flex-col gap-4 bg-white border shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
           <UserStatisticsCard />
           <hr />
           <NewArticleBtn url="/new" />
