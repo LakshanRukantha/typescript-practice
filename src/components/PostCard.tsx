@@ -46,7 +46,7 @@ const PostCard = (props: PostCardProps) => {
             {formatDate(props.date as string)}
           </span>
         </p>
-        <p className="flex items-center gap-1 text-slate-800">
+        <p className="flex items-center text-slate-800 gap-1">
           <FiEye />
           {millify(props.views)}
         </p>

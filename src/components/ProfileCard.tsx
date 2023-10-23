@@ -25,7 +25,7 @@ const ProfileCard = (props: ProfileCardProps) => {
         <div className="relative flex items-center justify-center top-2">
           <Image
             src={props.image}
-            className="relative border-8 border-violet-100 outline outline-2 h-24 w-24 outline-white transition-all rounded-full"
+            className="relative border-8 border-violet-100 outline outline-2 min-h-[96px] min-w-[96px] h-24 w-24 outline-white transition-all rounded-full"
             width={100}
             height={100}
             alt={`Avatar ${props.name}`}
@@ -78,22 +78,22 @@ const ProfileCard = (props: ProfileCardProps) => {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
           <div className="flex flex-wrap items-center gap-3 md:gap-4">
             <p className="text-gray-500 flex items-center gap-1 md:gap-2">
-              <HiOutlineMail className="text-xl mt-[1px]" />
-              <span>{props.email}</span>
+              <HiOutlineMail className="text-xl min-w-max mt-[1px]" />
+              <span className="break-all">{props.email}</span>
             </p>
             <p className="text-gray-500 flex items-center gap-1 md:gap-2">
-              <RiCake2Line className="text-xl mt-[1px]" />
-              <span>Joined on 2023-08-15</span>
+              <RiCake2Line className="text-xl min-w-max mt-[1px]" />
+              <span className="break-all">Joined on 2023-08-15</span>
             </p>
           </div>
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex flex-wrap items-center gap-3 md:gap-4">
             {!props.urls?.includes("github") && (
               <Link
                 href={""}
                 className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1 md:gap-2"
               >
-                <AiFillGithub className="text-xl mt-[1px]" />
-                <span>GitHub</span>
+                <AiFillGithub className="text-xl min-w-max mt-[1px]" />
+                <span className="break-all">GitHub</span>
               </Link>
             )}
             {!props.urls?.includes("twitter") && (
@@ -101,8 +101,8 @@ const ProfileCard = (props: ProfileCardProps) => {
                 href={""}
                 className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1 md:gap-2"
               >
-                <RiTwitterXFill className="text-xl mt-[1px]" />
-                <span>Twitter</span>
+                <RiTwitterXFill className="text-xl min-w-max mt-[1px]" />
+                <span className="break-all">Twitter</span>
               </Link>
             )}
           </div>

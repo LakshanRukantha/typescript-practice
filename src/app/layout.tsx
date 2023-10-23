@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
-        <body>
+        <body className="min-w-[350px]">
           <NavBar />
           <div className="flex flex-col pt-16 px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
             {children}
