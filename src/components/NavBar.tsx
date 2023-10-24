@@ -8,13 +8,20 @@ const NavBar = () => {
   const session = useSession();
 
   return (
-    <nav className="bg-violet-100 shadow-md py-2 px-3 mb-5 fixed min-w-[350px] w-full z-10">
-      <div className="max-w-5xl m-auto flex justify-between items-center">
+    <nav className="flex items-center bg-violet-100 shadow-md py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
+      <div className="max-w-5xl w-full m-auto flex justify-between items-center">
         <Link href={"/"} className="font-bold text-3xl text-violet-800">
           <span className="bg-violet-500 rounded px-2 text-white">LR</span> Blog
         </Link>
         <div>
-          {session.status === "authenticated" ? (
+          {session.status === "loading" ? (
+            <Image
+              src={"/spinner.svg"}
+              width={40}
+              height={40}
+              alt="Loading..."
+            />
+          ) : session.status === "authenticated" ? (
             <div className="flex gap-3 items-center">
               <Link href={"/profile"}>
                 <div className="relative flex items-center justify-center rounded-full">
