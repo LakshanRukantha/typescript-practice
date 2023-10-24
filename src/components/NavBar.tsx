@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { ImSpinner8 } from "react-icons/im";
 
 const NavBar = () => {
   const session = useSession();
@@ -15,12 +16,7 @@ const NavBar = () => {
         </Link>
         <div>
           {session.status === "loading" ? (
-            <Image
-              src={"/spinner.svg"}
-              width={40}
-              height={40}
-              alt="Loading..."
-            />
+            <ImSpinner8 className="animate-spin text-violet-500 h-9 w-9" />
           ) : session.status === "authenticated" ? (
             <div className="flex gap-3 items-center">
               <Link href={"/profile"}>
