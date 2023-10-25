@@ -33,7 +33,7 @@ const Profile = () => {
           <div className="w-full flex flex-col gap-4 bg-white border shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
             <UserStatisticsCard />
             <hr />
-            <NewArticleBtn url="/new" />
+            <NewArticleBtn url="/writearticle" />
           </div>
           <div className="w-full flex flex-col gap-4 md:w-2/3">
             {posts.map((post) => (

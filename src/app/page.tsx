@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main>
       <div className="grid my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-        {session.status === "authenticated" && <NewArticleBtn url="/new" />}
+        {session.status === "authenticated" && <NewArticleBtn url="/writearticle" />}
         {posts.map((post) => (
           <PostCard
             key={post.id}
