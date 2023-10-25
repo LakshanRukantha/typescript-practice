@@ -16,7 +16,7 @@ const NavBar = () => {
         </Link>
         <div>
           {session.status === "loading" ? (
-            <ImSpinner8 className="animate-spin text-violet-500 h-9 w-9" />
+            <ImSpinner8 className="animate-spin text-violet-500 h-11 w-11" />
           ) : session.status === "authenticated" ? (
             <div className="flex gap-3 items-center">
               <Link href={"/profile"}>
