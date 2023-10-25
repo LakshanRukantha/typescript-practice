@@ -16,6 +16,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signInValidationSchema from "@/schemas/SignInValidation";
+import LoadingScreen from "@/components/LoadingScreen";
 
 type SignInInputs = {
   email: string;
@@ -48,7 +49,7 @@ const SignIn = () => {
   const router = useRouter();
 
   if (session.status === "loading") {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   } else if (session.status === "authenticated") {
     router.push("/profile");
   }

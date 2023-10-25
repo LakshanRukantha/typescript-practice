@@ -9,3 +9,7 @@
 .min-h-container {
   min-height: calc(100vh - 3.1rem);
 }
+
+.min-h-container-with-footer {
+  min-height: calc(100vh - 7.3rem);
+}
