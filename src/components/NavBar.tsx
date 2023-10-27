@@ -1,12 +1,40 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
+import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ImSpinner8 } from "react-icons/im";
+import { useEffect } from "react";
+import { getUserData } from "@/utils/User";
+
+type UserProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar: string;
+};
 
 const NavBar = () => {
   const session = useSession();
+  const [user, setUser] = useState<UserProps>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    avatar: "",
+  });
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      getUserData(session.data?.user?.email as string)
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error("Error in getUserData:", error);
+        });
+    }
+  }, [session]);
 
   return (
     <nav className="flex items-center bg-violet-100 shadow-md py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
@@ -22,11 +50,15 @@ const NavBar = () => {
               <Link href={"/profile"}>
                 <div className="relative flex items-center justify-center rounded-full">
                   <Image
-                    src={session.data?.user?.image as string}
+                    src={
+                      session.data.user?.image ||
+                      (user.avatar as string) ||
+                      "/images/user-default.svg"
+                    }
                     className="inline-flex h-11 w-11 border-2 border-violet-500 transition-all rounded-full"
                     width={40}
                     height={40}
-                    alt={`profile ${session.data?.user?.name}`}
+                    alt={`profile ${user.firstName}`}
                   />
                   <span className="absolute animate-spin duration-1000 h-11 w-11 rounded-full mx-auto border-2 border-transparent hover:border-x-white"></span>
                 </div>

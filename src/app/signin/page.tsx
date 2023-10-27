@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import {
   AiOutlineGoogle,
   AiFillGithub,
@@ -46,12 +46,11 @@ const SignIn = () => {
   }, [isSubmitSuccessful, reset]);
 
   const session = useSession();
-  const router = useRouter();
 
   if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (session.status === "authenticated") {
-    router.push("/profile");
+    redirect("/profile");
   }
 
   const handleAuthGoogle = () => {
@@ -69,10 +68,20 @@ const SignIn = () => {
   // Submit Handler
   const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
     try {
-      toast.warning(`${JSON.stringify(data)}`, {
-        position: toast.POSITION.TOP_CENTER,
-        draggable: false,
+      const result = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        callbackUrl: nextPublicUrl,
+        redirect: false,
       });
+
+      if (result?.error) {
+        toast.error("Invalid Credentials", {
+          position: toast.POSITION.TOP_CENTER,
+          draggable: false,
+        });
+        return;
+      }
     } catch (error) {
       console.log(error);
     }

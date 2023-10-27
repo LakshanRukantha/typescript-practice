@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import signUpValidationSchema from "@/schemas/SignUpValidation";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { AiOutlineWarning } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,12 +47,11 @@ const SignUp = () => {
 
   // Session and Router
   const session = useSession();
-  const router = useRouter();
 
   if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (session.status === "authenticated") {
-    router.push("/profile");
+    redirect("/profile");
   }
 
   // Submit Handler
