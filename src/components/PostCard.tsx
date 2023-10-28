@@ -1,11 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import millify from "millify";
 import { format, isThisYear } from "date-fns";
 import { FiEye } from "react-icons/fi";
 import { SlCalender } from "react-icons/sl";
 
+// Types for PostCard props
 type PostCardProps = {
   title: string;
   content: string;
@@ -14,6 +13,7 @@ type PostCardProps = {
   id: string | number;
 };
 
+// Format date using date-fns
 const formatDate = (date: string) => {
   const isInCurrentYear = isThisYear(new Date(date)) as boolean;
   const dateFormat = isInCurrentYear ? "MMM d" : "MMM d, yyyy";

@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import signInValidationSchema from "@/schemas/SignInValidation";
 import LoadingScreen from "@/components/LoadingScreen";
 
+// Types for SignInInputs
 type SignInInputs = {
   email: string;
   password: string;
@@ -47,6 +48,7 @@ const SignIn = () => {
 
   const session = useSession();
 
+  // If session is loading, show loading screen and if session is authenticated, redirect to profile page
   if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (session.status === "authenticated") {
@@ -65,7 +67,7 @@ const SignIn = () => {
     });
   };
 
-  // Submit Handler
+  // Sign in with credentials handler
   const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
     try {
       const result = await signIn("credentials", {

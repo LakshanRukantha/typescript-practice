@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 
+// Types for SignUpInputs
 type Inputs = {
   firstName: string;
   lastName: string;
@@ -33,8 +34,10 @@ const SignUp = () => {
       confirmPassword: "",
     },
     mode: "onTouched",
-    resolver: yupResolver(signUpValidationSchema),
+    resolver: yupResolver(signUpValidationSchema), // yup resolver for validation
   });
+
+  // Destructure functions and properties from form
   const { register, handleSubmit, reset, formState } = form;
   const { errors, isSubmitting, isValid, isSubmitSuccessful } = formState;
 
@@ -48,6 +51,7 @@ const SignUp = () => {
   // Session and Router
   const session = useSession();
 
+  // If session is loading, show loading screen and if session is authenticated, redirect to profile page
   if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (session.status === "authenticated") {
@@ -66,6 +70,7 @@ const SignUp = () => {
 
     const res = await response.json();
 
+    // Message from server if success or error display to user
     const message = await res.message;
 
     // Notification Toast

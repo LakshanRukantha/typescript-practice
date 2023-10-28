@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
+// Types for UserSchema
 type UserSchema = {
   firstName: string;
   lastName: string;
@@ -41,6 +42,7 @@ const UserSchema = new Schema<UserSchema>(
   }
 );
 
+// Create a model for the User schema if it doesn't already exist and export it
 const UserModel = mongoose.models.User || mongoose.model("User", UserSchema);
 
 export default UserModel;

@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  /* outline: 1px solid red; */
-}
-
+/* Set custom min-height by reducing navbar */
 .min-h-container {
   min-height: calc(100vh - 3.1rem);
 }
 
+/* Set custom min-height by reducing navbar and footer */
 .min-h-container-with-footer {
   min-height: calc(100vh - 7.3rem);
 }

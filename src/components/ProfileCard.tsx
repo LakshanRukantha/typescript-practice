@@ -7,6 +7,7 @@ import { HiOutlineLogout, HiOutlineMail } from "react-icons/hi";
 import { RiCake2Line, RiTwitterXFill } from "react-icons/ri";
 import { AiFillGithub } from "react-icons/ai";
 
+// Types for ProfileCard props
 type ProfileCardProps = {
   name: string;
   about?: string;
@@ -16,12 +17,16 @@ type ProfileCardProps = {
   createdAt: string;
 };
 
+// Sign out function
 const handleSignOut = () => {
   signOut({ callbackUrl: "/" });
 };
 
 const ProfileCard = (props: ProfileCardProps) => {
+  // Destructure props from ProfileCardProps
   const { name, about, email, image, createdAt } = props;
+
+  // Format date for account created at
   const formatCreatedDate = (date: string) => {
     return format(new Date(date), "MMM d, yyyy") as string;
   };
@@ -53,6 +58,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             icon={<HiOutlineLogout className="text-xl" />}
             taskFunc={handleSignOut}
           />
+          {/* The below commented code does change button UI for mobile and desktop diferrent */}
           {/* <div className={`hidden md:block`}>
           <Button
             title="Sign Out"

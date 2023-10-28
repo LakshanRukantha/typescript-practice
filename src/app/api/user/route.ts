@@ -2,16 +2,20 @@ import connectDB from "@/libs/dbConnection";
 import UserModel from "@/schemas/UserSchema";
 import { NextRequest, NextResponse } from "next/server";
 
+// TODO: Secure this endpoint by adding authentication
+
 export const POST = async (req: NextRequest) => {
+  // Destructure email from request body
   const { email } = (await req.json()) as { email: string };
 
   if (!email) {
     return NextResponse.json({ message: "Email is required" }, { status: 400 });
   }
+
   await connectDB();
   const user = await UserModel.findOne({ email });
 
-  // return user data without passsword in db to prevent security fault update
+  // return only the nessary user data for the client for security reasons
   if (user) {
     return NextResponse.json(
       {

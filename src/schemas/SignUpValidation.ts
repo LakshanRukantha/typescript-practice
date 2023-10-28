@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
 const validateEmailExists = async (email: string) => {
+  // Check if email exists in DB
   if (email) {
     const response = await fetch("/api/emailExists", {
       method: "POST",
@@ -57,7 +58,7 @@ const signUpValidationSchema = yup.object().shape({
       return emailRegex.test(value);
     })
     .test("email-exist", "Email already exists", async (email: string) => {
-      return !(await validateEmailExists(email)) as boolean;
+      return !(await validateEmailExists(email)) as boolean; // Check email on every key change event. TODO: Remove this check and handle it in backend in future for better UX and security
     }),
 
   password: yup

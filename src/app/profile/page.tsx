@@ -11,6 +11,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/utils/User";
 
+// Types for user props
 type UserProps = {
   firstName: string;
   lastName: string;
@@ -21,6 +22,8 @@ type UserProps = {
 
 const Profile = () => {
   const session = useSession();
+
+  // State for user data needed for profile
   const [user, setUser] = useState<UserProps>({
     firstName: "",
     lastName: "",
@@ -31,6 +34,7 @@ const Profile = () => {
 
   const AVATAR_BASE_URL = "https://ui-avatars.com/api/?name=";
 
+  // Fetch user data from database
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
       if (session.status === "authenticated") {
@@ -47,6 +51,7 @@ const Profile = () => {
     fetchUser();
   }, [session]);
 
+  // If session is loading, show loading screen and if session is unauthenticated, redirect to sign in page
   if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (!session || session.status === "unauthenticated") {

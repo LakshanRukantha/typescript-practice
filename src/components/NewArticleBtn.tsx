@@ -1,8 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { FaFeatherAlt } from "react-icons/fa";
 
+// Types for NewArticleBtn props
 type NewArticleBtnProps = {
   url: string;
 };

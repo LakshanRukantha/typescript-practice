@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import Button from "./Button";
 import { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import { ImSpinner8 } from "react-icons/im";
 import { getUserData } from "@/utils/User";
 
+// Types for user props
 type UserProps = {
   firstName: string;
   lastName: string;
@@ -16,6 +18,8 @@ type UserProps = {
 
 const NavBar = () => {
   const session = useSession();
+
+  // State for user data needed for profile
   const [user, setUser] = useState<UserProps>({
     firstName: "",
     lastName: "",
@@ -23,8 +27,10 @@ const NavBar = () => {
     avatar: "",
   });
 
+  // Base url for avatar
   const AVATAR_BASE_URL = "https://ui-avatars.com/api/?name=";
 
+  // Fetch user data from database
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
       if (session.status === "authenticated") {

@@ -1,5 +1,7 @@
 "use client";
 
+// TODO: Create this as server side rendered page if possible in future
+
 import PostCard from "@/components/PostCard";
 import posts from "@/helpers/posts";
 import { useSession } from "next-auth/react";
@@ -10,7 +12,9 @@ export default function Home() {
   return (
     <main>
       <div className="grid my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-        {session.status === "authenticated" && <NewArticleBtn url="/writearticle" />}
+        {session.status === "authenticated" && (
+          <NewArticleBtn url="/writearticle" />
+        )}
         {posts.map((post) => (
           <PostCard
             key={post.id}

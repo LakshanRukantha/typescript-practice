@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import AuthProvider from "@/utils/AuthProvider";
 import Footer from "@/components/Footer";
 
+// Metadata for SEO
 export const metadata: Metadata = {
   title: "LR Blog | Lakshan Rukantha",
   description: "A blog about programming and web development.",

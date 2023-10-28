@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import Spinner from "./Spinner";
 
+// Types for button props
 type ButtonProps = {
   title: string;
   type?: "button" | "submit" | "reset";

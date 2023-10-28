@@ -3,6 +3,7 @@ import UserModel from "@/schemas/UserSchema";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
+// Types for RegistrationBody
 type RegistrationBody = {
   firstName: string;
   lastName: string;
@@ -18,6 +19,7 @@ export const POST = async (req: NextRequest) => {
     const { firstName, lastName, email, password, confirmPassword } =
       (await req.json()) as RegistrationBody;
 
+    // Check if all required fields are present or not
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
       return NextResponse.json(
         { message: "Please fill in all required fields." },
