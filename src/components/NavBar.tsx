@@ -53,7 +53,7 @@ const NavBar = () => {
           ) : session.status === "authenticated" ? (
             <div className="flex gap-3 items-center">
               <Link href={"/profile"}>
-                <div className="relative flex items-center justify-center rounded-full">
+                <div className="relative flex items-center transition-all active:scale-95 justify-center rounded-full">
                   <Image
                     src={
                       session.data.user?.image ||
@@ -61,12 +61,12 @@ const NavBar = () => {
                         ? user.avatar
                         : (`${AVATAR_BASE_URL}${"%20"}+` as string))
                     }
-                    className="inline-flex h-11 w-11 border-2 border-violet-500 transition-all rounded-full"
+                    className="inline-flex h-11 w-11 border-2 border-violet-500 rounded-full"
                     width={40}
                     height={40}
                     alt={`profile ${user.firstName}`}
                   />
-                  <span className="absolute animate-spin duration-1000 h-11 w-11 rounded-full mx-auto border-2 border-transparent hover:border-x-white"></span>
+                  <span className="absolute md:hover:animate-spin duration-1000 h-11 w-11 rounded-full mx-auto border-2 border-transparent md:hover:border-x-white"></span>
                 </div>
               </Link>
             </div>
