@@ -23,6 +23,8 @@ const NavBar = () => {
     avatar: "",
   });
 
+  const AVATAR_BASE_URL = "https://ui-avatars.com/api/?name=";
+
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
       if (session.status === "authenticated") {
@@ -53,7 +55,12 @@ const NavBar = () => {
               <Link href={"/profile"}>
                 <div className="relative flex items-center justify-center rounded-full">
                   <Image
-                    src={session.data.user?.image || (user.avatar as string)}
+                    src={
+                      session.data.user?.image ||
+                      (user.avatar
+                        ? user.avatar
+                        : (`${AVATAR_BASE_URL}${"%20"}+` as string))
+                    }
                     className="inline-flex h-11 w-11 border-2 border-violet-500 transition-all rounded-full"
                     width={40}
                     height={40}

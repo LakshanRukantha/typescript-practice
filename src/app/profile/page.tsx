@@ -29,6 +29,8 @@ const Profile = () => {
     createdAt: "",
   });
 
+  const AVATAR_BASE_URL = "https://ui-avatars.com/api/?name=";
+
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
       if (session.status === "authenticated") {
@@ -61,7 +63,12 @@ const Profile = () => {
           }
           about="I am a Full Stack Developer and a UI/UX Designer."
           email={session.data.user?.email || (user.email as string)}
-          image={session.data.user?.image || (user.avatar as string)}
+          image={
+            session.data.user?.image ||
+            (user.avatar
+              ? user.avatar
+              : (`${AVATAR_BASE_URL}${"%20"}+` as string))
+          }
           createdAt={user.createdAt as string}
         />
         <div className="relative flex flex-col md:justify-between md:flex-row items-start gap-4 mb-4">
