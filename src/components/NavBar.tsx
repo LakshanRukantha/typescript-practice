@@ -1,11 +1,10 @@
 "use client";
 import Link from "next/link";
 import Button from "./Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ImSpinner8 } from "react-icons/im";
-import { useEffect } from "react";
 import { getUserData } from "@/utils/User";
 
 type UserProps = {
@@ -25,15 +24,19 @@ const NavBar = () => {
   });
 
   useEffect(() => {
-    if (session.status === "authenticated") {
-      getUserData(session.data?.user?.email as string)
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          console.error("Error in getUserData:", error);
-        });
-    }
+    const fetchUser = async (): Promise<void> => {
+      if (session.status === "authenticated") {
+        await getUserData(session.data?.user?.email as string)
+          .then((data: UserProps) => {
+            setUser(data);
+          })
+          .catch((error) => {
+            console.error("Error in getUserData:", error);
+          });
+      }
+    };
+
+    fetchUser();
   }, [session]);
 
   return (
@@ -50,11 +53,7 @@ const NavBar = () => {
               <Link href={"/profile"}>
                 <div className="relative flex items-center justify-center rounded-full">
                   <Image
-                    src={
-                      session.data.user?.image ||
-                      (user.avatar as string) ||
-                      "/images/user-default.svg"
-                    }
+                    src={session.data.user?.image || (user.avatar as string)}
                     className="inline-flex h-11 w-11 border-2 border-violet-500 transition-all rounded-full"
                     width={40}
                     height={40}

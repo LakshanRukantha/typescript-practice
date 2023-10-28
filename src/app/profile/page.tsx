@@ -30,18 +30,22 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    if (session.status === "authenticated") {
-      getUserData(session.data?.user?.email as string)
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => {
-          console.error("Error in getUserData:", error);
-        });
-    }
+    const fetchUser = async (): Promise<void> => {
+      if (session.status === "authenticated") {
+        await getUserData(session.data?.user?.email as string)
+          .then((data: UserProps) => {
+            setUser(data);
+          })
+          .catch((error) => {
+            console.error("Error in getUserData:", error);
+          });
+      }
+    };
+
+    fetchUser();
   }, [session]);
 
-  if (session.status === "loading" || !user) {
+  if (session.status === "loading") {
     return <LoadingScreen />;
   } else if (!session || session.status === "unauthenticated") {
     redirect("/signin");
