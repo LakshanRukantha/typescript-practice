@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// This is the name of the cookie that will be used to store the session token so get it as dev or prod
+export function getCookieName() {
+  return process.env.NODE_ENV === "development"
+    ? ("next-auth.session-token" as string)
+    : ("__Secure-next-auth.session-token" as string);
+}
+
 function checkSessionCookie(cookieHeader: string): boolean {
   // Split the cookie header into individual cookies
   const cookies = cookieHeader.split(";");
@@ -9,7 +16,7 @@ function checkSessionCookie(cookieHeader: string): boolean {
   for (const cookie of cookies) {
     const [cookieName, cookieValue] = cookie.trim().split("=");
 
-    if (cookieName === "next-auth.session-token") {
+    if (cookieName === getCookieName()) {
       return true;
     }
   }
