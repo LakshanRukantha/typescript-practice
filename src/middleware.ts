@@ -42,3 +42,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/profile", request.url));
   }
 }
+
+// Filter the middleware to only run on the pages that need it
+export const config = {
+  matcher: /^\/(profile|writearticle|signin|signup)/,
+};
