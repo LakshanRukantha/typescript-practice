@@ -45,5 +45,5 @@ export async function middleware(request: NextRequest) {
 
 // Filter the middleware to only run on the pages that need it
 export const config = {
-  matcher: /^\/(profile|writearticle|signin|signup)/,
+  matcher: ["/profile", "/writearticle", "/signin", "/signup"],
 };
