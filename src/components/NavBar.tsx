@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Button from "./Button";
+import { ModeToggle } from "./ui/toggle-mode-btn";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -53,7 +54,7 @@ const NavBar = () => {
         <Link href={"/"} className="font-bold text-3xl text-violet-500">
           <span className="bg-violet-500 rounded px-2 text-white">LR</span> Blog
         </Link>
-        <div>
+        <div className="flex items-center gap-2 md:gap-3">
           {session.status === "loading" ? (
             <ImSpinner8 className="animate-spin text-violet-500 h-11 w-11" />
           ) : session.status === "authenticated" ? (
@@ -84,6 +85,7 @@ const NavBar = () => {
               <Button title={"Sign Up"} priority="primary" />
             </Link>
           )}
+          <ModeToggle />
         </div>
       </div>
     </nav>

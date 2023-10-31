@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import NavBar from "@/components/NavBar";
 import AuthProvider from "@/utils/AuthProvider";
+import { ThemeProvider } from "@/utils/ThemeProvider";
 import Footer from "@/components/Footer";
 
 // Metadata for SEO
@@ -22,11 +23,17 @@ export default function RootLayout({
     <AuthProvider>
       <html lang="en">
         <body className="min-w-[350px]">
-          <NavBar />
-          <div className="flex flex-col pt-16 px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
-            {children}
-          </div>
-          <Footer />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem={true}
+          >
+            <NavBar />
+            <div className="flex flex-col pt-16 px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
+              {children}
+            </div>
+            <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </AuthProvider>
