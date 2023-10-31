@@ -22,17 +22,17 @@ const formatDate = (date: string) => {
 
 const PostCard = (props: PostCardProps) => {
   return (
-    <div className="flex flex-col justify-between gap-2 p-2 border-2 transition-all bg-gradient-to-tr hover:shadow-md from-violet-100 rounded-md hover:border-violet-500">
-      <div className="font-semibold hover:underline hover:text-violet-800 text-lg text-slate-800 text-ellipsis line-clamp-2 max-w-fit">
+    <div className="dark:bg-gray-700 flex flex-col justify-between gap-2 p-2 border-2 transition-all bg-violet-100 hover:shadow-md rounded-md hover:border-violet-500">
+      <div className="font-semibold hover:underline hover:text-violet-800 text-lg dark:text-violet-400 text-slate-800 text-ellipsis line-clamp-2 max-w-fit">
         {props.title}
       </div>
       <div>
-        <div className="text-ellipsis line-clamp-3 text-slate-800">
+        <div className="text-ellipsis line-clamp-3 dark:text-gray-200 text-slate-800">
           {props.content}
         </div>
         <div className="flex justify-end items-center">
           <Link
-            className="relative right-0 text-base hover:underline w-fit text-slate-800 hover:text-violet-800"
+            className="relative right-0 text-base hover:underline w-fit dark:text-gray-200 text-slate-800 hover:text-violet-800 dark:hover:text-violet-400"
             href={"#"}
           >
             Read more
@@ -40,13 +40,13 @@ const PostCard = (props: PostCardProps) => {
         </div>
       </div>
       <div className="flex justify-between items-center">
-        <p className="flex items-center gap-2">
+        <p className="flex items-center dark:text-gray-400 text-slate-800 gap-2">
           <SlCalender />{" "}
           <span className="italic text-sm">
             {formatDate(props.date as string)}
           </span>
         </p>
-        <p className="flex items-center text-slate-800 gap-1">
+        <p className="flex items-center dark:text-gray-400 text-slate-800 gap-1">
           <FiEye />
           {millify(props.views)}
         </p>
