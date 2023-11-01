@@ -49,7 +49,7 @@ const NavBar = () => {
   }, [session]);
 
   return (
-    <nav className="dark:bg-gray-800 flex items-center bg-violet-200 shadow-md py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
+    <nav className="dark:bg-zinc-800 flex items-center bg-violet-200 shadow-md py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
       <div className="max-w-5xl w-full m-auto flex justify-between items-center">
         <Link href={"/"} className="font-bold text-3xl text-violet-500">
           <span className="bg-violet-500 rounded px-2 text-white">LR</span> Blog

@@ -18,6 +18,8 @@ export default function Home() {
         {posts.map((post) => (
           <PostCard
             key={post.id}
+            author={post.author}
+            profile_pic={post.profile_pic}
             title={post.title}
             content={post.content}
             date={post.date}

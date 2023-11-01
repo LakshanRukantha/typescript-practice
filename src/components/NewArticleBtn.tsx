@@ -14,7 +14,7 @@ const NewArticleBtn = (props: NewArticleBtnProps) => {
     >
       <div className="flex flex-row items-center gap-3">
         <FaFeatherAlt className="text-2xl md:text-3xl text-violet-500" />
-        <h2 className="text-lg font-semibold text-slate-800">
+        <h2 className="text-lg font-semibold text-zinc-800">
           Write New Article
         </h2>
       </div>

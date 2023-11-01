@@ -80,18 +80,18 @@ const ProfileCard = (props: ProfileCardProps) => {
         </div>
       </div>
       <div className="pt-14 pb-4 md:pb-0 px-4 md:px-0">
-        <h1 className="text-3xl font-bold text-slate-800">{name && name}</h1>
-        <p className="text-gray-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
+        <h1 className="text-3xl font-bold text-zinc-800">{name && name}</h1>
+        <p className="text-zinc-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
           {about && about}
         </p>
-        <hr className="bg-slate-500 my-3" />
+        <hr className="bg-zinc-500 my-3" />
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
           <div className="flex flex-wrap items-center gap-3 md:gap-4">
-            <p className="text-gray-500 flex items-center gap-1 md:gap-2">
+            <p className="text-zinc-500 flex items-center gap-1 md:gap-2">
               <HiOutlineMail className="text-xl min-w-max mt-[1px]" />
               <span className="break-all">{email && email}</span>
             </p>
-            <p className="text-gray-500 flex items-center gap-1 md:gap-2">
+            <p className="text-zinc-500 flex items-center gap-1 md:gap-2">
               <RiCake2Line className="text-xl min-w-max mt-[1px]" />
               <span className="break-all">
                 Joined on {createdAt && formatCreatedDate(createdAt as string)}
@@ -102,7 +102,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             {!props.urls?.includes("github") && (
               <Link
                 href={""}
-                className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1 md:gap-2"
+                className="text-zinc-500 hover:text-zinc-700 transition-colors flex items-center gap-1 md:gap-2"
               >
                 <AiFillGithub className="text-xl min-w-max mt-[1px]" />
                 <span className="break-all">GitHub</span>
@@ -111,7 +111,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             {!props.urls?.includes("twitter") && (
               <Link
                 href={""}
-                className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1 md:gap-2"
+                className="text-zinc-500 hover:text-zinc-700 transition-colors flex items-center gap-1 md:gap-2"
               >
                 <RiTwitterXFill className="text-xl min-w-max mt-[1px]" />
                 <span className="break-all">Twitter</span>

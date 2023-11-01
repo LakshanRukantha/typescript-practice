@@ -86,6 +86,13 @@ const Profile = () => {
             {posts.map((post) => (
               <PostCard
                 key={post.id}
+                author={"You"}
+                profile_pic={
+                  session.data.user?.image ||
+                  (user.avatar
+                    ? user.avatar
+                    : (`${AVATAR_BASE_URL}${"%20"}+` as string))
+                }
                 title={post.title}
                 content={post.content}
                 date={post.date}

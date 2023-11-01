@@ -113,7 +113,7 @@ const SignIn = () => {
             id="email"
             type="text"
             placeholder="Enter your email..."
-            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+            className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
               errors.email
                 ? "border-red-500"
                 : "border-violet-200 focus:border-violet-500"
@@ -136,7 +136,7 @@ const SignIn = () => {
             id="password"
             type="password"
             placeholder="Password"
-            className={`border-2 outline-none px-2 py-1 rounded text-slate-800 ${
+            className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
               errors.password
                 ? "border-red-500"
                 : "border-violet-200 focus:border-violet-500"
@@ -166,9 +166,9 @@ const SignIn = () => {
         </span>
       </form>
       <div className="flex max-w-sm mx-auto flex-row items-center justify-center">
-        <hr className="h-[2px] bg-slate-300 flex-1" />
+        <hr className="h-[2px] bg-zinc-300 flex-1" />
         <span className="px-2 text-lg aspect-square">or</span>
-        <hr className="flex-1 bg-slate-300 h-[2px]" />
+        <hr className="flex-1 bg-zinc-300 h-[2px]" />
       </div>
       <div className="flex flex-col max-w-sm mx-auto gap-4 my-4">
         <Button
