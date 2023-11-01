@@ -49,7 +49,7 @@ const NavBar = () => {
   }, [session]);
 
   return (
-    <nav className="dark:bg-zinc-800 flex items-center bg-violet-200 shadow-md py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
+    <nav className="dark:bg-zinc-800/80 backdrop-blur-md bg-violet-300/60 flex items-center shadow-sm py-2 px-3 mb-5 fixed min-h-[60px] min-w-[350px] w-full z-10">
       <div className="max-w-5xl w-full m-auto flex justify-between items-center">
         <Link href={"/"} className="font-bold text-3xl text-violet-500">
           <span className="bg-violet-500 rounded px-2 text-white">LR</span> Blog
@@ -73,7 +73,6 @@ const NavBar = () => {
                     height={40}
                     alt={`profile ${user.firstName}`}
                   />
-                  <span className="absolute md:hover:animate-spin duration-1000 h-11 w-11 rounded-full mx-auto border-2 border-transparent md:hover:border-x-white"></span>
                 </div>
               </Link>
             </div>
