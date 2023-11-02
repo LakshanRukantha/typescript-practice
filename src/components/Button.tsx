@@ -40,7 +40,7 @@ const Button = ({
             ? isLoading
               ? "bg-violet-400 text-zinc-50 pointer-events-none"
               : "bg-violet-500 text-zinc-50 lg:hover:bg-violet-400"
-            : "border-violet-500 text-zinc-800 hover:bg-violet-500 hover:text-zinc-50"
+            : "border-violet-500 dark:text-zinc-50 text-zinc-800 hover:bg-violet-500 hover:text-zinc-50"
         }`}
         type={type ? type : "button"}
         disabled={isLoading}
@@ -57,7 +57,7 @@ const Button = ({
             ? isLoading
               ? "bg-violet-400 text-zinc-50 pointer-events-none"
               : "bg-violet-500 text-zinc-50 lg:hover:bg-violet-400"
-            : "border-violet-500 text-zinc-800 hover:bg-violet-500 hover:text-zinc-50"
+            : "border-violet-500 dark:text-zinc-50 text-zinc-800 hover:bg-violet-500 hover:text-zinc-50"
         }`}
         type={type ? type : "button"}
         disabled={isLoading}
