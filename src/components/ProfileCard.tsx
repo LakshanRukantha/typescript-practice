@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { HiOutlineLogout, HiOutlineMail } from "react-icons/hi";
 import { RiCake2Line, RiTwitterXFill } from "react-icons/ri";
 import { AiFillGithub } from "react-icons/ai";
+import Divider from "./Divider";
 
 // Types for ProfileCard props
 type ProfileCardProps = {
@@ -32,11 +33,11 @@ const ProfileCard = (props: ProfileCardProps) => {
   };
   return (
     <div className="w-full mx-auto flex flex-col border md:p-4 shadow rounded-md my-5">
-      <div className="relative flex max-h-[75px] flex-row rounded-t md:rounded-t bg-violet-100 items-start justify-between p-4">
+      <div className="relative flex max-h-[75px] flex-row rounded-t md:rounded-t dark:bg-zinc-800 bg-violet-100 items-start justify-between p-4">
         <div className="relative flex items-center justify-center top-2">
           <Image
             src={image && image}
-            className="relative border-8 border-violet-100 outline outline-2 min-h-[96px] min-w-[96px] h-24 w-24 outline-white transition-all rounded-full"
+            className="relative border-8 dark:border-zinc-700 border-violet-100 outline outline-2 min-h-[96px] min-w-[96px] h-24 w-24 dark:outline-zinc-950 outline-white transition-all rounded-full"
             width={100}
             height={100}
             alt={`Avatar ${name}`}
@@ -80,11 +81,11 @@ const ProfileCard = (props: ProfileCardProps) => {
         </div>
       </div>
       <div className="pt-14 pb-4 md:pb-0 px-4 md:px-0">
-        <h1 className="text-3xl font-bold text-zinc-800">{name && name}</h1>
-        <p className="text-zinc-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
+        <h1 className="text-3xl font-bold dark:text-zinc-50 text-zinc-800">{name && name}</h1>
+        <p className="dark:text-zinc-400 text-zinc-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
           {about && about}
         </p>
-        <hr className="bg-zinc-500 my-3" />
+        <Divider/>
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
           <div className="flex flex-wrap items-center gap-3 md:gap-4">
             <p className="text-zinc-500 flex items-center gap-1 md:gap-2">

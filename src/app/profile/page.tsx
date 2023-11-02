@@ -6,7 +6,6 @@ import posts from "@/helpers/posts";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import UserStatisticsCard from "@/components/UserStatisticsCard";
-import NewArticleBtn from "@/components/NewArticleBtn";
 import LoadingScreen from "@/components/LoadingScreen";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/utils/User";
@@ -77,10 +76,8 @@ const Profile = () => {
           createdAt={user.createdAt as string}
         />
         <div className="relative flex flex-col md:justify-between md:flex-row items-start gap-4 mb-4">
-          <div className="w-full flex flex-col gap-4 bg-white border shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
+          <div className="w-full flex flex-col dark:bg-zinc-800 bg-zinc-50 border shadow rounded-md p-4 md:w-1/3 md:sticky md:top-20">
             <UserStatisticsCard />
-            <hr />
-            <NewArticleBtn url="/writearticle" />
           </div>
           <div className="w-full flex flex-col gap-4 md:w-2/3">
             {posts.map((post) => (
