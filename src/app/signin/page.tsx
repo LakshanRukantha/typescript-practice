@@ -114,7 +114,7 @@ const SignIn = () => {
               id="email"
               type="text"
               placeholder="Enter your email..."
-              className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+              className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                 errors.email
                   ? "border-red-500"
                   : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
@@ -137,7 +137,7 @@ const SignIn = () => {
               id="password"
               type="password"
               placeholder="Password"
-              className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+              className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                 errors.password
                   ? "border-red-500"
                   : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"

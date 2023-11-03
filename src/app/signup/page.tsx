@@ -115,7 +115,7 @@ const SignUp = () => {
                 id="firstName"
                 type="text"
                 placeholder="Enter your first name..."
-                className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+                className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                   errors.firstName
                     ? "border-red-500"
                     : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
@@ -138,7 +138,7 @@ const SignUp = () => {
                 id="lastName"
                 type="text"
                 placeholder="Enter your last name..."
-                className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+                className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                   errors.lastName
                     ? "border-red-500"
                     : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
@@ -162,7 +162,7 @@ const SignUp = () => {
               id="email"
               type="email"
               placeholder="Enter your email address..."
-              className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+              className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                 errors.email
                   ? "border-red-500"
                   : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
@@ -185,7 +185,7 @@ const SignUp = () => {
               id="password"
               type="password"
               placeholder="Enter your password..."
-              className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+              className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                 errors.password
                   ? "border-red-500"
                   : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
@@ -208,7 +208,7 @@ const SignUp = () => {
               id="confirmPassword"
               type="password"
               placeholder="Confirm your password..."
-              className={`border-2 outline-none px-2 py-1 rounded text-zinc-800 ${
+              className={`border-2 dark:caret-zinc-100 outline-none px-2 py-1 rounded dark:text-zinc-200 text-zinc-800 ${
                 errors.confirmPassword
                   ? "border-red-500"
                   : "dark:border-zinc-600 border-violet-200 focus:border-violet-500"
