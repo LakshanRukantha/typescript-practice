@@ -29,7 +29,7 @@ export default function RootLayout({
             enableSystem={true}
           >
             <NavBar />
-            <div className="flex flex-col pt-16 px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
+            <div className="flex flex-col pt-[60px] px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
               {children}
             </div>
             <Footer />
