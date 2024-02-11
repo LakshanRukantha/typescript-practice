@@ -1,4 +1,6 @@
 import "./globals.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import { SkeletonTheme } from "react-loading-skeleton";
 import type { Metadata } from "next";
 import NavBar from "@/components/NavBar";
 import AuthProvider from "@/utils/AuthProvider";
@@ -28,11 +30,13 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem={true}
           >
-            <NavBar />
-            <div className="flex flex-col pt-[60px] px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
-              {children}
-            </div>
-            <Footer />
+            <SkeletonTheme baseColor="#d3d3d3">
+              <NavBar />
+              <div className="flex flex-col pt-[60px] px-3 lg:px-0 max-w-5xl mx-auto min-h-container">
+                {children}
+              </div>
+              <Footer />
+            </SkeletonTheme>
           </ThemeProvider>
         </body>
       </html>

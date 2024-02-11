@@ -7,6 +7,7 @@ import { HiOutlineLogout, HiOutlineMail } from "react-icons/hi";
 import { RiCake2Line, RiTwitterXFill } from "react-icons/ri";
 import { AiFillGithub } from "react-icons/ai";
 import Divider from "./Divider";
+import Skeleton from "react-loading-skeleton";
 
 // Types for ProfileCard props
 type ProfileCardProps = {
@@ -35,21 +36,27 @@ const ProfileCard = (props: ProfileCardProps) => {
     <div className="w-full mx-auto flex flex-col border md:p-4 shadow rounded-md my-5">
       <div className="relative flex max-h-[75px] flex-row rounded-t md:rounded-t dark:bg-zinc-800 bg-violet-100 items-start justify-between p-4">
         <div className="relative flex items-center justify-center top-2">
-          <Image
-            src={image && image}
-            className="relative border-8 dark:border-zinc-700 border-violet-100 outline outline-2 min-h-[96px] min-w-[96px] h-24 w-24 dark:outline-zinc-950 outline-white transition-all rounded-full"
-            width={100}
-            height={100}
-            alt={`Avatar ${name}`}
-          />
-          <span className="absolute animate-spin duration-1000 h-[100px] w-[100px] rounded-full mx-auto border-2 border-transparent hover:border-y-violet-500"></span>
-          <div
-            className="absolute flex items-center justify-center h-4 w-4 top-[6px] right-[6px]"
-            title={`${name} is online.`}
-          >
-            <span className="absolute animate-ping rounded-full h-3 w-3 bg-green-500"></span>
-            <span className="inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-          </div>
+          {image ? (
+            <>
+              <Image
+                src={image}
+                className="relative border-8 dark:border-zinc-700 border-violet-100 outline outline-2 min-h-[96px] min-w-[96px] h-24 w-24 dark:outline-zinc-950 outline-white transition-all rounded-full"
+                width={100}
+                height={100}
+                alt={`Avatar ${name}`}
+              />
+              <span className="absolute animate-spin duration-1000 h-[100px] w-[100px] rounded-full mx-auto border-2 border-transparent hover:border-y-violet-500"></span>
+              <div
+                className="absolute flex items-center justify-center h-4 w-4 top-[6px] right-[6px]"
+                title={`${name} is online.`}
+              >
+                <span className="absolute animate-ping rounded-full h-3 w-3 bg-green-500"></span>
+                <span className="inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
+            </>
+          ) : (
+            <Skeleton width="96px" height="96px" circle />
+          )}
         </div>
         <div className="h-full my-auto">
           <Button
@@ -81,21 +88,28 @@ const ProfileCard = (props: ProfileCardProps) => {
         </div>
       </div>
       <div className="pt-14 pb-4 md:pb-0 px-4 md:px-0">
-        <h1 className="text-3xl font-bold dark:text-zinc-50 text-zinc-800">{name && name}</h1>
+        <h1 className="text-3xl font-bold dark:text-zinc-50 text-zinc-800">
+          {name || <Skeleton width={250} />}
+        </h1>
         <p className="dark:text-zinc-400 text-zinc-600 text-base font-normal md:text-lg text-ellipsis line-clamp-2 ">
-          {about && about}
+          {about || <Skeleton count={2} />}
         </p>
-        <Divider/>
+        <Divider />
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
           <div className="flex flex-wrap items-center gap-3 md:gap-4">
             <p className="text-zinc-500 flex items-center gap-1 md:gap-2">
               <HiOutlineMail className="text-xl min-w-max mt-[1px]" />
-              <span className="break-all">{email && email}</span>
+              <span className="break-all">
+                {email || <Skeleton width={200} />}
+              </span>
             </p>
             <p className="text-zinc-500 flex items-center gap-1 md:gap-2">
               <RiCake2Line className="text-xl min-w-max mt-[1px]" />
               <span className="break-all">
-                Joined on {createdAt && formatCreatedDate(createdAt as string)}
+                Joined on{" "}
+                {(createdAt && formatCreatedDate(createdAt as string)) || (
+                  <Skeleton width={100} />
+                )}
               </span>
             </p>
           </div>
