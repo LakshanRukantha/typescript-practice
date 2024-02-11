@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <AuthProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className="min-w-[350px]">
           <ThemeProvider
             attribute="class"
