@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { GenerateUID } from "@/utils/GenerateUID";
 import LoadingScreen from "@/components/LoadingScreen";
 import Button from "@/components/Button";
 import { FaFileUpload } from "react-icons/fa";
@@ -27,7 +28,9 @@ const WriteArticle = () => {
             priority="secondary"
             hasAction={true}
             icon={<FaFileUpload className="text-xl" />}
-            taskFunc={() => console.log(`Post Published! ${new Date()}`)}
+            taskFunc={() =>
+              console.log(GenerateUID("How to create nodejs app"))
+            }
           />
         </div>
         <div className="flex flex-1 flex-col">
